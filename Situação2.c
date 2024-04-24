@@ -33,6 +33,11 @@ int main () {
         printf("Informe sua Data de Nascimento \n");
         scanf ("%s", &dataNasc);
         valorIndividualPlanoSaude=120;
+         // Condição Para Imprimir PS
+        printf("Cliente...: %s \n",nome);
+        printf("CPF...: %s \n", cpf);
+        printf("Data Nasc...: %s \n", dataNasc);
+        printf("Valor Individual...: R$ %f", valorIndividualPlanoSaude);
     } else {
         // Opção para Plano Odontológico
         printf("Informe seu nome \n");
@@ -42,22 +47,10 @@ int main () {
         printf("Informe sua Data de Nascimento \n");
         scanf ("%s", &dataNasc);
         ValorIndividualOdonto=80;
-    }
-
-    if (TipoPlano==1) {
-        // Condição Para Imprimir PS
-        printf("Cliente...: %s \n",nome);
-        printf("CPF...: %s \n", cpf);
-        printf("Data Nasc...: %s \n", dataNasc);
-        printf("Valor Individual...: R$ %f", valorIndividualPlanoSaude);
-    } else {
         // Condição para imprimir PO
         printf("Cliente...: %s \n",nomePlanoOdonto);
         printf("CPF...: %s \n", cpfOdonto);
         printf("Data Nasc...: %s \n", dataNasc);
         printf("Valor Individual...: R$ %f", ValorIndividualOdonto);
-
-    }
-
-    
+    }   
 }
