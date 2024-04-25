@@ -7,8 +7,11 @@ int main() {
     int Quantidade;
     float ValorTotal;
     int Escolha;
+    int cod;
 
-    // Entrada de Dados
+    do
+    {
+        // Entrada de Dados
     printf("Bem vindo, este eh nosso cardapio\n\n 100. Cachorro-quente (R$4.20)\n 101. Bauru simples (R$3.30)\n 102. Bauru com ovo (R$5.50)\n 103. Hamburguer (R$6.20)\n 104. Cheeseburguer (R$5.30)\n 105. Refrigerante (R$4.50)\n\n Agora, informe o codigo do lanche que voce quer pedir: ");
     scanf("%d", &Escolha);
     
@@ -49,6 +52,10 @@ int main() {
     } else {
         printf("Voce digitou o codigo errado. Tente novamente!");
     }
+
+        printf("Deseja executar outra vez? Digite: 1 - Sim | 0 - Nao \n");
+        scanf("%d", &cod);
+    } while (cod != 0);
 
     return 0; 
 }
