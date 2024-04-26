@@ -5,6 +5,7 @@
         "SegundaQuestão.C": "cpp",
         "InverterNúmeros.C": "cpp",
         "CardápioLanches.C": "cpp",
-        "Calculadora.C": "cpp"
+        "Calculadora.C": "cpp",
+        "Media.C": "cpp"
     }
 }
