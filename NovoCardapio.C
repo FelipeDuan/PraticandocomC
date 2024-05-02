@@ -19,10 +19,49 @@ void MenuCardapio() {
     printf("|  104   |   CHEESEBURGUER   | R$5.30 |\n");
     printf("|  105   |    REFRIGERANTE   | R$4.50 |\n");
     printf("+-------------------------------------+\n\n");
+    
+}
+
+// Opções de Lanche
+void Entrada(){
     printf("Agora, informe o codigo do lanche que voce quer pedir: \n");
     scanf("%d", &Escolha);
     printf("Informe a quantidade: \n");
     scanf("%d", &Quantidade);
+}
+
+void CachorroQuente() {
+    printf("Sua opcao foi o Cachorro-quente. \n");
+        ValorTotal = Quantidade * 4.20;
+}
+
+void BauruSimples() {
+    printf("Sua opcao foi o Bauru simples. \n");
+        ValorTotal = Quantidade * 3.30;
+}
+
+void BauruComOvo() {
+    printf("Sua opcao foi o Bauru com Ovo. \n");
+        ValorTotal = Quantidade * 5.50;
+}
+
+void Hamburguer() {
+    printf("Sua opcao foi o Hamburguer. \n");
+        ValorTotal = Quantidade * 6.20;
+}
+
+void Cheeseburguer() {
+    printf("Sua opcao foi o Cheeseburguer. \n");
+        ValorTotal = Quantidade * 5.30;
+}
+
+void Refrigerante() {
+    printf("Sua opcao foi o Refrigerante. \n");
+        ValorTotal = Quantidade * 4.50;
+}
+
+void Saida(){
+    printf("O valor a ser pago eh: R$%.2f \n", ValorTotal);
 }
 
 //Escolha do Lanche
