@@ -6,6 +6,8 @@
         "InverterNúmeros.C": "cpp",
         "CardápioLanches.C": "cpp",
         "Calculadora.C": "cpp",
-        "Media.C": "cpp"
+        "Media.C": "cpp",
+        "NumerosSoma.C": "cpp",
+        "Calculadora2num.C": "cpp"
     }
 }
