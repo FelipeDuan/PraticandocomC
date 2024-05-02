@@ -19,13 +19,12 @@ void MenuCardapio() {
     printf("|  104   |   CHEESEBURGUER   | R$5.30 |\n");
     printf("|  105   |    REFRIGERANTE   | R$4.50 |\n");
     printf("+-------------------------------------+\n\n");
-    
+    printf("Agora, informe o codigo do lanche que voce quer pedir: \n");
+    scanf("%d", &Escolha);
 }
 
 // Opções de Lanche
 void Entrada(){
-    printf("Agora, informe o codigo do lanche que voce quer pedir: \n");
-    scanf("%d", &Escolha);
     printf("Informe a quantidade: \n");
     scanf("%d", &Quantidade);
 }
@@ -66,5 +65,50 @@ void Saida(){
 
 //Escolha do Lanche
 int main() {
+    do {
+        MenuCardapio();
+        switch (Escolha) {
+            case 100:
+                Entrada();
+                CachorroQuente();
+                Saida();
+            break;
 
+            case 101:
+                Entrada();
+                BauruSimples();
+                Saida();
+            break;
+
+            case 102:
+                Entrada();
+                BauruComOvo();
+                Saida();
+            break;
+
+            case 103:
+                Entrada();
+                Hamburguer();
+                Saida();
+            break;
+
+            case 104:
+                Entrada();
+                Cheeseburguer();
+                Saida();
+            break;
+
+            case 105:
+                Entrada();
+                Refrigerante();
+                Saida();
+            break;
+
+            default:
+                printf("Voce inseriu a opcao errada! \n");
+        }
+
+        printf("Deseja executar outra vez? Digite: 1 - Sim | 0 - Nao \n");
+        scanf("%d", &cod);
+    } while (cod != 0);
 }
