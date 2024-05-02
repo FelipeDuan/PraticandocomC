@@ -111,4 +111,6 @@ int main() {
         printf("Deseja executar outra vez? Digite: 1 - Sim | 0 - Nao \n");
         scanf("%d", &cod);
     } while (cod != 0);
+
+    return 0;
 }
