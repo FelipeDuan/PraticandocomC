@@ -11,7 +11,7 @@ void MenuCalculadora () {
     printf("+=============================+\n");
     printf("| 3-MULTIPLICAR |  4-DIVIDIR  +\n");
     printf("+=============================+\n");
-    printf("Informe a operacao desejada ou pressione 5 para sair \n");
+    printf("Informe a operacao desejada: \n");
     scanf("%d", &operacao);
 
 }
@@ -46,8 +46,8 @@ void Saida() {
 
 // Código Principal
 int main() {
-    MenuCalculadora();
     do {
+    MenuCalculadora();
      switch (operacao) {
         case 1:
             Entrada();
@@ -74,7 +74,7 @@ int main() {
         break;
 
         default:
-            printf("Voce inseriu a opcao errada!");
+            printf("Voce inseriu a opcao errada! \n");
      }
 
         printf("Deseja executar outra vez? Digite: 1 - Sim | 0 - Nao \n");
