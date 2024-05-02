@@ -73,8 +73,12 @@ int main() {
             Saida();
         break;
 
+        default:
+            printf("Voce inseriu a opcao errada!");
+     }
+
         printf("Deseja executar outra vez? Digite: 1 - Sim | 0 - Nao \n");
-        scanf("%d", &cod);}
+        scanf("%d", &cod);
     } while (cod != 0);
 
     return 0; 
