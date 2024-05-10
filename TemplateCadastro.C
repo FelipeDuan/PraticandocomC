@@ -30,6 +30,7 @@ void SubMenuCad() {
             case 1:
             system("cls");
             //CadastroI
+            printf("brabo demaizi \n");
             break;
 
             case 2:
@@ -52,7 +53,8 @@ void SubMenuCad() {
         }
         printf("Deseja retornar ao Menu Principal? Digite: 1 - Sim | 0 - Nao \n");
         scanf("%d", &cod);
-    }  while (cod != 0);
+    }  while (cod != 1);
+    MenuPrincipal();
 }
 
 int main() {
