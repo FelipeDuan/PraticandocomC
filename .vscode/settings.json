@@ -9,6 +9,9 @@
         "Media.C": "cpp",
         "NumerosSoma.C": "cpp",
         "Calculadora2num.C": "cpp",
-        "NovoCardapio.C": "cpp"
+        "NovoCardapio.C": "cpp",
+        "Cadastro.C": "cpp",
+        "TemplateCadastro.C": "cpp",
+        "ManipulaçãoDeArquivos.C": "cpp"
     }
 }

@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-    int opMenuPrincipal, opSubMenuCad;
+    int opMenuPrincipal, opSubMenuCad, cod, fim;
 
 void MenuPrincipal() {
     printf("+=====================================+\n");
@@ -10,32 +10,7 @@ void MenuPrincipal() {
     printf("+-------------------------------------+\n");
     printf("|  3 - OPCAO III   |   4 - OPCAO IV   |\n");
     printf("+=====================================+\n");
-    printf("Informe a operacao desejada: \n");
-    scanf("%d", &opMenuPrincipal);
-    switch (opMenuPrincipal) {
-        case 1:
-            system("cls");
-            //Opcao1();
-        break;
-
-        case 2:
-            system("cls");
-            //Opcao2();
-        break;
-
-        case 3:
-            system("cls");
-            //Opcao3();
-        break;
-
-        case 4:
-            system("cls");
-            //Opcao4();
-        break;
-
-        default:
-            printf("Voce inseriu uma opcao invalida!");    
-    }
+    
 }
 
 void SubMenuCad() {
@@ -71,7 +46,49 @@ void SubMenuCad() {
         break;
 
         default:
-            printf("Voce inseriu uma opcao invalida!");    
-    } while (opSubMenuCad != 5);
+            printf("Voce inseriu uma opcao invalida!\n");
+        }   
+        printf("Deseja retornar ao Menu Principal? Digite: 1 - Sim | 0 - Nao \n");
+        scanf("%d", &cod);
+    } while (cod = 0);
         MenuPrincipal();
+}
+
+int main() {
+do {
+    MenuPrincipal();
+    printf("Informe a operacao: \n");
+    scanf("%d", &opMenuPrincipal);
+    switch (opMenuPrincipal) {
+        case 1:
+            system("cls");
+            SubMenuCad();
+        break;
+
+        case 2:
+            system("cls");
+            //Opcao2
+            printf("Opcao II Em desevolvimento \n");
+        break;
+
+        case 3:
+            system("cls");
+            //Opcao3();
+            printf("Opcao III Em desevolvimento \n");
+        break;
+
+        case 4:
+            system("cls");
+            //Opcao4();
+            printf("Opcao IV Em desevolvimento \n");
+        break;
+
+        default:
+            printf("Voce inseriu uma opcao invalida!");    
+    }
+
+    printf("Deseja executar outra vez? Digite: 1 - Sim | 0 - Nao \n");
+        scanf("%d", &cod);
+} while (cod != 0);
+
 }
