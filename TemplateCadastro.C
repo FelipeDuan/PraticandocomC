@@ -17,15 +17,15 @@ void MenuPrincipal() {
 
 void SubMenuCad() {
     do {
-        printf("+=========================================+\n");
-        printf("|              CADASTRO GERAL             |\n");
-        printf("+=========================================+\n");
-        printf("|  1 - CADASTRO I    |   2 - CADASTRO II  |\n");
-        printf("+-----------------------------------------+\n");
-        printf("|  3 - CADASTRO III  |   4 - CADASTRO IV  |\n");
-        printf("+=========================================+\n");
-        printf("Informe a operacao desejada: \n");
-        scanf("%d", &opSubMenuCad);
+    printf("+=========================================+\n");
+    printf("|              CADASTRO GERAL             |\n");
+    printf("+=========================================+\n");
+    printf("|  1 - CADASTRO I    |   2 - CADASTRO II  |\n");
+    printf("+-----------------------------------------+\n");
+    printf("|  3 - CADASTRO III  |   4 - CADASTRO IV  |\n");
+    printf("+=========================================+\n");
+    printf("Informe a operacao desejada: \n");
+    scanf("%d", &opSubMenuCad);
         switch (opSubMenuCad) {
             case 1:
             system("cls");
@@ -63,7 +63,7 @@ int main() {
         switch (opMenuPrincipal) {
             case 1:
                 system("cls");
-                SubMenuCad;
+                SubMenuCad();
             break;
 
             case 2:
