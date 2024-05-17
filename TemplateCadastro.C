@@ -17,19 +17,20 @@ void MenuPrincipal() {
 
 void SubMenuCad() {
     do {
-        printf("+=========================================+\n");
-        printf("|              CADASTRO GERAL             |\n");
-        printf("+=========================================+\n");
-        printf("|  1 - CADASTRO I    |   2 - CADASTRO II  |\n");
-        printf("+-----------------------------------------+\n");
-        printf("|  3 - CADASTRO III  |   4 - CADASTRO IV  |\n");
-        printf("+=========================================+\n");
-        printf("Informe a operacao desejada: \n");
-        scanf("%d", &opSubMenuCad);
+    printf("+=========================================+\n");
+    printf("|              CADASTRO GERAL             |\n");
+    printf("+=========================================+\n");
+    printf("|  1 - CADASTRO I    |   2 - CADASTRO II  |\n");
+    printf("+-----------------------------------------+\n");
+    printf("|  3 - CADASTRO III  |   4 - CADASTRO IV  |\n");
+    printf("+=========================================+\n");
+    printf("Informe a operacao desejada: \n");
+    scanf("%d", &opSubMenuCad);
         switch (opSubMenuCad) {
             case 1:
             system("cls");
             //CadastroI
+            printf("brabo demaizi \n");
             break;
 
             case 2:
@@ -52,7 +53,8 @@ void SubMenuCad() {
         }
         printf("Deseja retornar ao Menu Principal? Digite: 1 - Sim | 0 - Nao \n");
         scanf("%d", &cod);
-    }  while (cod != 0);
+    }  while (cod != 1);
+    MenuPrincipal();
 }
 
 int main() {
@@ -63,7 +65,7 @@ int main() {
         switch (opMenuPrincipal) {
             case 1:
                 system("cls");
-                SubMenuCad;
+                SubMenuCad();
             break;
 
             case 2:
