@@ -12,6 +12,9 @@
         "NovoCardapio.C": "cpp",
         "Cadastro.C": "cpp",
         "TemplateCadastro.C": "cpp",
-        "ManipulaçãoDeArquivos.C": "cpp"
+        "ManipulaçãoDeArquivos.C": "cpp",
+        "CadastroAluno.C": "cpp",
+        "Matriz.C": "cpp",
+        "Template2.C": "cpp"
     }
 }

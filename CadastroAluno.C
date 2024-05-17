@@ -6,7 +6,7 @@
 #include <time.h>
 
 // Variáveis
-
+int opMenuPrincipal;
 
 // Voids
 void Clear() {
@@ -15,6 +15,7 @@ void Clear() {
 
 void MenuPrincipal() {
     Clear(); 
+    printf("Olá, usuário! Seja bem-vindo ao sistema do controle acadêmico. \n\n");
     printf("+===============================================+\n");
     printf("|               CONTROLE ACADÊMICO              |\n");
     printf("+===============================================+\n");
@@ -23,7 +24,9 @@ void MenuPrincipal() {
     printf("|     3 - CONTEÚDOS      |     4 - NOTAS        |\n");
     printf("+-----------------------------------------------+\n");
     printf("|                    5 - SAIR                   |\n");
-    printf("+===============================================+\n");
+    printf("+===============================================+\n\n");
+    printf("Essa é a tela inicial do controle acadêmico, informe o número da opção desejada: ");
+    scanf("%d", opMenuPrincipal);
 }
 
 void SubMenuCad() {
