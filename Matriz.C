@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int DL, DC;
+int DL, DC, repetir;
 
 void Matriz() {
     int matriz[DL][DC];
@@ -22,13 +22,17 @@ void Matriz() {
 }
 
 int main() {
-    printf("Informe a dimensao da Linha da Matriz \n");
-    scanf("%d", &DL);
+    do {
+        printf("Informe a dimensao da Linha da Matriz \n");
+        scanf("%d", &DL);
 
-    printf("Informe a dimensao da Coluna da Matriz \n");
-    scanf("%d", &DC);
+        printf("Informe a dimensao da Coluna da Matriz \n");
+        scanf("%d", &DC);
 
-    Matriz();
+        Matriz();
 
+        printf("\nDeseja executar outra vez? Digite: 1 - Sim | 0 - Nao \n");
+        scanf("%d", &repetir);
+    } while ( repetir != 0);
     return 0;
 }
