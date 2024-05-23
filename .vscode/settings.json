@@ -15,6 +15,9 @@
         "ManipulaçãoDeArquivos.C": "cpp",
         "CadastroAluno.C": "cpp",
         "Matriz.C": "cpp",
-        "Template2.C": "cpp"
+        "Template2.C": "cpp",
+        "MultiplicacaoMatrizes.C": "cpp",
+        "MultipMatrizes.C": "cpp",
+        "Struct.C": "cpp"
     }
 }
