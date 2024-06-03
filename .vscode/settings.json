@@ -18,6 +18,7 @@
         "Template2.C": "cpp",
         "MultiplicacaoMatrizes.C": "cpp",
         "MultipMatrizes.C": "cpp",
-        "Struct.C": "cpp"
+        "Struct.C": "cpp",
+        "ControleAcademico.C": "cpp"
     }
 }
