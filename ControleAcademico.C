@@ -7,7 +7,7 @@
 #include <string.h>
 
 // Variáveis
-int opMenuPrincipal, opCadastro, opImpressao, opConteudos, opNotas, EncerrandoPrograma = 0, CadAluno, QuantAlunos, CadProfessor, QuantProfessores;
+int opMenuPrincipal, opCadastro, opImpressao, opConteudos, opNotas, EncerrandoPrograma = 0, CadAluno, QuantAlunos, CadProfessor, QuantProfessores, CadDisciplina, QuantDisciplinas;
 
 // Struct
 struct CadastroAlunos {
@@ -201,7 +201,65 @@ void CadastroProfessores() {
 }
 
 void Disciplinas() {
+    Clear();
     printf("Bem-vindo à tela de Listagem das Disciplinas.\n");
+    printf("+============================================+\n");
+    printf("|     DESEJA CADASTRAR ALGUMA DISCIPLINA?    |\n");
+    printf("+============================================+\n");
+    printf("|       1 - SIM       |       0 - NÃO        |\n");
+    printf("+============================================+\n");
+    printf("| Sua Resposta: ");
+    scanf("%d", &CadDisciplina);
+}
+
+void CadastroDisciplinas() {
+    int d;
+    printf("Certo! Agora iremos cadastrar Disciplinas. \nOBS: Você só pode cadastrar até 8 disciplinas de uma vez \n");
+    printf("Quantos Professores você deseja cadastrar? - R: ");
+    scanf("%d", &QuantDisciplinas);
+
+    struct CadastroDisciplinas disciplinas[QuantDisciplinas];
+    if (QuantDisciplinas < 8) {
+        // Consumir o caractere de nova linha deixado pelo scanf
+        getchar();
+
+        for (d = 0; d < QuantDisciplinas; d++) {
+            // Recebendo Dados
+            Clear();
+            printf("Informe o nome da Disciplina %d: ", d+1);
+            fgets(disciplinas[d].NomeDisciplina, sizeof(disciplinas[d].NomeDisciplina), stdin);
+            strtok(disciplinas[d].NomeDisciplina, "\n");
+
+            printf("Informe o nome do professor que ministra a Disciplina %d: ", d+1);
+            fgets(disciplinas[d].Professor, sizeof(disciplinas[d].Professor), stdin);
+            strtok(disciplinas[d].Professor, "\n");
+
+            printf("Informe o curso da Disciplina %d: ", d+1);
+            fgets(disciplinas[d].CursoDisciplina, sizeof(disciplinas[d].CursoDisciplina), stdin);
+            strtok(disciplinas[d].CursoDisciplina, "\n");
+            Clear();
+        }
+
+        for (d = 0; d < QuantDisciplinas; d++) {
+            // Imprimindo dados
+            printf("Parabéns, o Cadastro de Professores foi um sucesso!\n");
+            printf("Aqui está o resultado do Cadastro: \n\n");
+            printf("+========================================+\n");
+            printf("|        DADOS DA DISCIPLINA %d           |\n", d+1);
+            printf("+========================================+\n");
+            printf("| -> Nome: %s \n", disciplinas[d].NomeDisciplina);
+            printf("| -> Professor: %s \n", disciplinas[d].Professor);
+            printf("| -> Curso: %s \n\n\n", disciplinas[d].CursoDisciplina);
+        }
+    } else {
+        printf("Você inseriu uma quantidade de Cadastros inválida!\n\n");
+    }
+
+    Sleep(1500);
+
+    // Espera que o usuário pressione qualquer tecla
+    printf("Pressione qualquer tecla para continuar...\n");
+    getchar();  // Espera o usuário pressionar uma tecla
 }
 
 void Cursos() {
@@ -302,6 +360,14 @@ int main() {
                     case 3:
                         Clear();
                         Disciplinas();
+                        if (CadDisciplina == 0) {
+                            printf("Tudo bem, você não irá cadastrar disciplinas!");
+                        } else if (CadDisciplina == 1) {
+                            Clear();
+                            CadastroDisciplinas();
+                        } else {
+                            printf("Você inseriu uma opção inválida!");
+                        }
                     break;
 
                     case 4:
