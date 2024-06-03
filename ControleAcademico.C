@@ -4,16 +4,17 @@
 #include <locale.h>
 #include <windows.h>
 #include <time.h>
+#include <string.h>
 
 // Variáveis
 int opMenuPrincipal, opCadastro, opImpressao, opConteudos, opNotas, EncerrandoPrograma = 0, CadAluno, QuantAlunos;
 
 // Struct
 struct CadastroAlunos {
-    char Nome[40];
-    int Matricula;
-    char Turma[10];
-    char Curso[20];
+    char Nome[50];
+    char Matricula[50];
+    char Turma[50];
+    char Curso[50];
 };
 
 // Voids
@@ -22,7 +23,7 @@ void Clear() {
 }
 
 void MenuPrincipal() {
-    Clear(); 
+    Clear();
     printf("Olá, usuário! Seja bem-vindo ao sistema do controle acadêmico. \n\n");
     printf("+===============================================+\n");
     printf("|               CONTROLE ACADÊMICO              |\n");
@@ -72,30 +73,39 @@ void CadastroAluno() {
 
     struct CadastroAlunos alunos[QuantAlunos];
     if (QuantAlunos < 5) {
-    for (i = 0; i < QuantAlunos; i++) {
-        Clear();
-        printf("Informe o nome do Aluno %d: ", i+1);
-        scanf("%s", alunos[i].Nome);
+        // Consumir o caractere de nova linha deixado pelo scanf
+        getchar();
 
-        printf("Informe a matrícula do Aluno %d: ", i+1);
-        scanf("%d", &alunos[i].Matricula);
+        for (i = 0; i < QuantAlunos; i++) {
+            Clear();
+            printf("Informe o nome do Aluno %d: ", i+1);
+            fgets(alunos[i].Nome, sizeof(alunos[i].Nome), stdin);
+            strtok(alunos[i].Nome, "\n");
 
-        printf("Informe a turma do Aluno %d: ", i+1);
-        scanf("%s", alunos[i].Turma);
+            printf("Informe a matrícula do Aluno %d: ", i+1);
+            fgets(alunos[i].Matricula, sizeof(alunos[i].Matricula), stdin);
+            strtok(alunos[i].Matricula, "\n");
 
-        printf("Informe o curso do Aluno %d: ", i+1);
-        scanf("%s", alunos[i].Curso);
+            printf("Informe a turma do Aluno %d: ", i+1);
+            fgets(alunos[i].Turma, sizeof(alunos[i].Turma), stdin);
+            strtok(alunos[i].Turma, "\n");
 
-        // Imprimindo dados
-        Clear();
-        printf("+========================================+\n");
-        printf("|            DADOS DO ALUNO %d            |\n", i+1);
-        printf("+========================================+\n");
-        printf("| -> Nome: %s \n", alunos[i].Nome);
-        printf("| -> Matrícula: %d \n", alunos[i].Matricula);
-        printf("| -> Turma: %s \n", alunos[i].Turma);
-        printf("| -> Curso: %s \n\n\n", alunos[i].Curso);
-    }
+            printf("Informe o curso do Aluno %d: ", i+1);
+            fgets(alunos[i].Curso, sizeof(alunos[i].Curso), stdin);
+            strtok(alunos[i].Curso, "\n");
+            Clear();
+        }
+
+        for (i = 0; i < QuantAlunos; i++) {
+            // Imprimindo dados
+            printf("+========================================+\n");
+            printf("|            DADOS DO ALUNO %d            |\n", i+1);
+            printf("+========================================+\n");
+            printf("| -> Nome: %s \n", alunos[i].Nome);
+            printf("| -> Matrícula: %s \n", alunos[i].Matricula);
+            printf("| -> Turma: %s \n", alunos[i].Turma);
+            printf("| -> Curso: %s \n\n\n", alunos[i].Curso);
+        }
     } else {
         printf("Você inseriu uma quantidade de Cadastros inválida!\n\n");
     }
@@ -104,7 +114,6 @@ void CadastroAluno() {
 
     // Espera que o usuário pressione qualquer tecla
     printf("Pressione qualquer tecla para continuar...\n");
-    getchar();  // Limpa o buffer de entrada
     getchar();  // Espera o usuário pressionar uma tecla
 }
 
