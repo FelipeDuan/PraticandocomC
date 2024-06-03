@@ -66,12 +66,12 @@ void Alunos() {
 
 void CadastroAluno() {
     int i;
-    printf("Certo! Agora iremos cadastrar Alunos. \n OBS: Você só pode cadastrar até 4 alunos de uma vez \n");
+    printf("Certo! Agora iremos cadastrar Alunos. \nOBS: Você só pode cadastrar até 4 alunos de uma vez \n");
     printf("Quantos Alunos você deseja cadastrar? - R: ");
     scanf("%d", &QuantAlunos);
 
     struct CadastroAlunos alunos[QuantAlunos];
-
+    if (QuantAlunos < 5) {
     for (i = 0; i < QuantAlunos; i++) {
         Clear();
         printf("Informe o nome do Aluno %d: ", i+1);
@@ -96,18 +96,28 @@ void CadastroAluno() {
         printf("| -> Turma: %s \n", alunos[i].Turma);
         printf("| -> Curso: %s \n\n\n", alunos[i].Curso);
     }
+    } else {
+        printf("Você inseriu uma quantidade de Cadastros inválida!\n\n");
+    }
+
+    Sleep(1500);
+
+    // Espera que o usuário pressione qualquer tecla
+    printf("Pressione qualquer tecla para continuar...\n");
+    getchar();  // Limpa o buffer de entrada
+    getchar();  // Espera o usuário pressionar uma tecla
 }
 
 void Professores() {
-    printf("Bem-vindo à tela de Acompanhamento dos Professores.");
+    printf("Bem-vindo à tela de Cadastro dos Professores.\n");
 }
 
 void Disciplinas() {
-    printf("Bem-vindo à tela de Listagem das Disciplinas.");
+    printf("Bem-vindo à tela de Listagem das Disciplinas.\n");
 }
 
 void Cursos() {
-    printf("Bem-vindo à tela de Listagem dos Cursos.");
+    printf("Bem-vindo à tela de Listagem dos Cursos.\n");
 }
 
 void SubMenuImp() {
@@ -121,17 +131,17 @@ void SubMenuImp() {
     printf("+--------------------------------------------------+\n");
     printf("|           5 - RETORNAR AO MENU PRINCIPAL         |\n");
     printf("+==================================================+\n");
-    printf("Esse é o menu de Impressão. \n Para acessar nossas funcionalidades, informe o número da operação desejada: ");
+    printf("Esse é o menu de Impressão. \nPara acessar nossas funcionalidades, informe o número da operação desejada: ");
     scanf("%d", &opImpressao);
 }
 
 void MenuConteudos() {
-    printf("Esse é o menu de Conteúdos. \n Para acessar nossas funcionalidades, informe o número da operação desejada: ");
+    printf("Esse é o menu de Conteúdos. \nPara acessar nossas funcionalidades, informe o número da operação desejada: ");
     scanf("%d", &opConteudos);
 }
 
 void MenuNotas() {
-    printf("Esse é o menu de Notas. \n Para acessar nossas funcionalidades, informe o número da operação desejada: ");
+    printf("Esse é o menu de Notas. \nPara acessar nossas funcionalidades, informe o número da operação desejada: ");
     scanf("%d", &opNotas);
 }
 
