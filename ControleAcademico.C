@@ -7,7 +7,7 @@
 #include <string.h>
 
 // Variáveis
-int opMenuPrincipal, opCadastro, opImpressao, opConteudos, opNotas, EncerrandoPrograma = 0, CadAluno, QuantAlunos;
+int opMenuPrincipal, opCadastro, opImpressao, opConteudos, opNotas, EncerrandoPrograma = 0, CadAluno, QuantAlunos, CadProfessor, QuantProfessores;
 
 // Struct
 struct CadastroAlunos {
@@ -15,6 +15,19 @@ struct CadastroAlunos {
     char Matricula[50];
     char Turma[50];
     char Curso[50];
+};
+
+struct CadastroProfessores {
+    char NomeProfessor[50];
+    char Disciplina[50];
+    char TurmaProfessor[50];
+    char CursoProfessor[50];
+};
+
+struct CadastroDisciplinas {
+    char NomeDisciplina[50];
+    char Professor[50];
+    char CursoDisciplina[50];
 };
 
 // Voids
@@ -77,6 +90,7 @@ void CadastroAluno() {
         getchar();
 
         for (i = 0; i < QuantAlunos; i++) {
+            // Recebendo dados
             Clear();
             printf("Informe o nome do Aluno %d: ", i+1);
             fgets(alunos[i].Nome, sizeof(alunos[i].Nome), stdin);
@@ -98,6 +112,8 @@ void CadastroAluno() {
 
         for (i = 0; i < QuantAlunos; i++) {
             // Imprimindo dados
+            printf("Parabéns, o Cadastro de Alunos foi um sucesso!\n");
+            printf("Aqui está o resultado do Cadastro: \n\n");
             printf("+========================================+\n");
             printf("|            DADOS DO ALUNO %d            |\n", i+1);
             printf("+========================================+\n");
@@ -118,7 +134,70 @@ void CadastroAluno() {
 }
 
 void Professores() {
+    Clear();
     printf("Bem-vindo à tela de Cadastro dos Professores.\n");
+    printf("+============================================+\n");
+    printf("|     DESEJA CADASTRAR ALGUM PROFESSOR?      |\n");
+    printf("+============================================+\n");
+    printf("|       1 - SIM       |       0 - NÃO        |\n");
+    printf("+============================================+\n");
+    printf("| Sua Resposta: ");
+    scanf("%d", &CadProfessor);
+}
+
+void CadastroProfessores() {
+    int n;
+    printf("Certo! Agora iremos cadastrar Professores. \nOBS: Você só pode cadastrar até 8 professores de uma vez \n");
+    printf("Quantos Professores você deseja cadastrar? - R: ");
+    scanf("%d", &QuantProfessores);
+
+    struct CadastroProfessores professores[QuantProfessores];
+    if (QuantProfessores < 8) {
+        // Consumir o caractere de nova linha deixado pelo scanf
+        getchar();
+
+        for (n = 0; n < QuantProfessores; n++) {
+            // Recebendo Dados
+            Clear();
+            printf("Informe o nome do Professor %d: ", n+1);
+            fgets(professores[n].NomeProfessor, sizeof(professores[n].NomeProfessor), stdin);
+            strtok(professores[n].NomeProfessor, "\n");
+
+            printf("Informe a disciplina do Professor %d: ", n+1);
+            fgets(professores[n].Disciplina, sizeof(professores[n].Disciplina), stdin);
+            strtok(professores[n].Disciplina, "\n");
+
+            printf("Informe a turma do Professor %d: ", n+1);
+            fgets(professores[n].TurmaProfessor, sizeof(professores[n].TurmaProfessor), stdin);
+            strtok(professores[n].TurmaProfessor, "\n");
+
+            printf("Informe o curso do Professor %d: ", n+1);
+            fgets(professores[n].CursoProfessor, sizeof(professores[n].CursoProfessor), stdin);
+            strtok(professores[n].CursoProfessor, "\n");
+            Clear();
+        }
+
+        for (n = 0; n < QuantProfessores; n++) {
+            // Imprimindo dados
+            printf("Parabéns, o Cadastro de Professores foi um sucesso!\n");
+            printf("Aqui está o resultado do Cadastro: \n\n");
+            printf("+========================================+\n");
+            printf("|        DADOS DO PROFESSOR %d            |\n", n+1);
+            printf("+========================================+\n");
+            printf("| -> Nome: %s \n", professores[n].NomeProfessor);
+            printf("| -> Disciplina: %s \n", professores[n].Disciplina);
+            printf("| -> Turma: %s \n", professores[n].TurmaProfessor);
+            printf("| -> Curso: %s \n\n\n", professores[n].CursoProfessor);
+        }
+    } else {
+        printf("Você inseriu uma quantidade de Cadastros inválida!\n\n");
+    }
+
+    Sleep(1500);
+
+    // Espera que o usuário pressione qualquer tecla
+    printf("Pressione qualquer tecla para continuar...\n");
+    getchar();  // Espera o usuário pressionar uma tecla
 }
 
 void Disciplinas() {
@@ -210,6 +289,14 @@ int main() {
                     case 2:
                         Clear();
                         Professores();
+                        if (CadProfessor == 0) {
+                            printf("Tudo bem, você não irá cadastrar nenhum aluno!");
+                        } else if (CadProfessor == 1) {
+                            Clear();
+                            CadastroProfessores();
+                        } else {
+                            printf("Você inseriu uma opção inválida!");
+                        }
                     break;
 
                     case 3:
