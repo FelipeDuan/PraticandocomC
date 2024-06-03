@@ -30,6 +30,11 @@ struct CadastroDisciplinas {
     char CursoDisciplina[50];
 };
 
+struct CadastroCursos {
+    char NomeCurso[50];
+    char Disciplinas[50];
+};
+
 // Voids
 void Clear() {
     system("cls");
