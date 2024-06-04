@@ -53,10 +53,10 @@ void SistemaIcev() {
     printf("|     #########   #######  ########     ###        |\n");
     printf("|                                                  |\n");
     printf("+==================================================+\n");
-    printf("|                CONTROLE ACADÊMICO                |\n");
+    printf("|                CONTROLE ACADEMICO                |\n");
     printf("+==================================================+\n");
     printf("|                   Bem-vindo ao                   |\n");
-    printf("|            Sistema de Controle Acadêmico         |\n");
+    printf("|            Sistema de Controle Academico         |\n");
     printf("|                       ICEV!                      |\n");
     printf("|                                                  |\n");
     printf("+==================================================+\n");
@@ -109,6 +109,7 @@ void Alunos() {
 
 void CadastroAluno() {
     int i;
+    char nomeArquivo[100];
     printf("Certo! Agora iremos cadastrar Alunos. \nOBS: Você só pode cadastrar até 4 alunos de uma vez \n");
     printf("Quantos Alunos você deseja cadastrar? - R: ");
     scanf("%d", &QuantAlunos);
@@ -117,6 +118,19 @@ void CadastroAluno() {
     if (QuantAlunos < 5) {
         // Consumir o caractere de nova linha deixado pelo scanf
         getchar();
+
+        printf("\nInforme o nome do arquivo para salvar os dados dos alunos: ");
+        fgets(nomeArquivo, sizeof(nomeArquivo), stdin);
+        strtok(nomeArquivo, "\n");  // Remover o caractere de nova linha
+
+        char caminhoArquivo[150] = "C:\\Users\\felip\\Workspace\\C\\PastaCadastros\\";
+        strcat(caminhoArquivo, nomeArquivo);
+        FILE *arquivo = fopen(caminhoArquivo, "w");
+
+        if (arquivo == NULL) {
+            printf("Erro ao abrir o arquivo!\n");
+            return;
+        }
 
         for (i = 0; i < QuantAlunos; i++) {
             // Recebendo dados
@@ -136,13 +150,23 @@ void CadastroAluno() {
             printf("Informe o curso do Aluno %d: ", i+1);
             fgets(alunos[i].Curso, sizeof(alunos[i].Curso), stdin);
             strtok(alunos[i].Curso, "\n");
+
+            // Gravando dados no arquivo
+            fprintf(arquivo, "Aluno %d:\n", i+1);
+            fprintf(arquivo, "Nome: %s\n", alunos[i].Nome);
+            fprintf(arquivo, "Matrícula: %s\n", alunos[i].Matricula);
+            fprintf(arquivo, "Turma: %s\n", alunos[i].Turma);
+            fprintf(arquivo, "Curso: %s\n\n", alunos[i].Curso);
             Clear();
         }
 
+        fclose(arquivo);
+
+        // Imprimindo dados
+        printf("Parabéns, o Cadastro de Alunos foi um sucesso!\n");
+        printf("Aqui está o resultado do Cadastro: \n\n");
+
         for (i = 0; i < QuantAlunos; i++) {
-            // Imprimindo dados
-            printf("Parabéns, o Cadastro de Alunos foi um sucesso!\n");
-            printf("Aqui está o resultado do Cadastro: \n\n");
             printf("+========================================+\n");
             printf("|            DADOS DO ALUNO %d            |\n", i+1);
             printf("+========================================+\n");
@@ -158,7 +182,7 @@ void CadastroAluno() {
     Sleep(1500);
 
     // Espera que o usuário pressione qualquer tecla
-    printf("Pressione qualquer tecla para continuar...\n");
+    printf("Pressione enter para continuar...\n");
     getchar();  // Espera o usuário pressionar uma tecla
 }
 
@@ -176,6 +200,7 @@ void Professores() {
 
 void CadastroProfessores() {
     int n;
+    char nomeArquivo[100];
     printf("Certo! Agora iremos cadastrar Professores. \nOBS: Você só pode cadastrar até 8 professores de uma vez \n");
     printf("Quantos Professores você deseja cadastrar? - R: ");
     scanf("%d", &QuantProfessores);
@@ -184,6 +209,19 @@ void CadastroProfessores() {
     if (QuantProfessores < 8) {
         // Consumir o caractere de nova linha deixado pelo scanf
         getchar();
+
+        printf("\nInforme o nome do arquivo para salvar os dados dos professores: ");
+        fgets(nomeArquivo, sizeof(nomeArquivo), stdin);
+        strtok(nomeArquivo, "\n");  // Remover o caractere de nova linha
+
+        char caminhoArquivo[150] = "C:\\Users\\felip\\Workspace\\C\\PastaCadastros\\";
+        strcat(caminhoArquivo, nomeArquivo);
+        FILE *arquivo = fopen(caminhoArquivo, "w");
+
+        if (arquivo == NULL) {
+            printf("Erro ao abrir o arquivo!\n");
+            return;
+        }
 
         for (n = 0; n < QuantProfessores; n++) {
             // Recebendo Dados
@@ -203,13 +241,23 @@ void CadastroProfessores() {
             printf("Informe o curso do Professor %d: ", n+1);
             fgets(professores[n].CursoProfessor, sizeof(professores[n].CursoProfessor), stdin);
             strtok(professores[n].CursoProfessor, "\n");
+
+            // Gravando dados no arquivo
+            fprintf(arquivo, "Professor %d:\n", n+1);
+            fprintf(arquivo, "Nome: %s\n", professores[n].NomeProfessor);
+            fprintf(arquivo, "Disciplina: %s\n", professores[n].Disciplina);
+            fprintf(arquivo, "Turma: %s\n", professores[n].TurmaProfessor);
+            fprintf(arquivo, "Curso: %s\n\n", professores[n].CursoProfessor);
             Clear();
         }
 
+        fclose(arquivo);
+
+        // Imprimindo dados
+        printf("Parabéns, o Cadastro de Professores foi um sucesso!\n");
+        printf("Aqui está o resultado do Cadastro: \n\n");
+
         for (n = 0; n < QuantProfessores; n++) {
-            // Imprimindo dados
-            printf("Parabéns, o Cadastro de Professores foi um sucesso!\n");
-            printf("Aqui está o resultado do Cadastro: \n\n");
             printf("+========================================+\n");
             printf("|        DADOS DO PROFESSOR %d            |\n", n+1);
             printf("+========================================+\n");
@@ -225,7 +273,7 @@ void CadastroProfessores() {
     Sleep(1500);
 
     // Espera que o usuário pressione qualquer tecla
-    printf("Pressione qualquer tecla para continuar...\n");
+    printf("Pressione enter para continuar...\n");
     getchar();  // Espera o usuário pressionar uma tecla
 }
 
@@ -243,6 +291,7 @@ void Disciplinas() {
 
 void CadastroDisciplinas() {
     int d;
+    char nomeArquivo[100];
     printf("Certo! Agora iremos cadastrar Disciplinas. \nOBS: Você só pode cadastrar até 8 disciplinas de uma vez \n");
     printf("Quantas Disciplinas você deseja cadastrar? - R: ");
     scanf("%d", &QuantDisciplinas);
@@ -251,6 +300,19 @@ void CadastroDisciplinas() {
     if (QuantDisciplinas < 8) {
         // Consumir o caractere de nova linha deixado pelo scanf
         getchar();
+
+        printf("Informe o nome do arquivo para salvar os dados das disciplinas: ");
+        fgets(nomeArquivo, sizeof(nomeArquivo), stdin);
+        strtok(nomeArquivo, "\n");  // Remover o caractere de nova linha
+
+        char caminhoArquivo[150] = "C:\\Users\\felip\\Workspace\\C\\PastaCadastros\\";
+        strcat(caminhoArquivo, nomeArquivo);
+        FILE *arquivo = fopen(caminhoArquivo, "w");
+
+        if (arquivo == NULL) {
+            printf("Erro ao abrir o arquivo!\n");
+            return;
+        }
 
         for (d = 0; d < QuantDisciplinas; d++) {
             // Recebendo Dados
@@ -266,13 +328,22 @@ void CadastroDisciplinas() {
             printf("Informe o curso da Disciplina %d: ", d+1);
             fgets(disciplinas[d].CursoDisciplina, sizeof(disciplinas[d].CursoDisciplina), stdin);
             strtok(disciplinas[d].CursoDisciplina, "\n");
+
+            // Gravando dados no arquivo
+            fprintf(arquivo, "Disciplina %d:\n", d+1);
+            fprintf(arquivo, "Nome: %s\n", disciplinas[d].NomeDisciplina);
+            fprintf(arquivo, "Professor: %s\n", disciplinas[d].Professor);
+            fprintf(arquivo, "Curso: %s\n\n", disciplinas[d].CursoDisciplina);
             Clear();
         }
 
+        fclose(arquivo);
+
+        // Imprimindo dados
+        printf("Parabéns, o Cadastro de Disciplinas foi um sucesso!\n");
+        printf("Aqui está o resultado do Cadastro: \n\n");
+
         for (d = 0; d < QuantDisciplinas; d++) {
-            // Imprimindo dados
-            printf("Parabéns, o Cadastro de Disciplinas foi um sucesso!\n");
-            printf("Aqui está o resultado do Cadastro: \n\n");
             printf("+========================================+\n");
             printf("|        DADOS DA DISCIPLINA %d           |\n", d+1);
             printf("+========================================+\n");
@@ -287,7 +358,7 @@ void CadastroDisciplinas() {
     Sleep(1500);
 
     // Espera que o usuário pressione qualquer tecla
-    printf("Pressione qualquer tecla para continuar...\n");
+    printf("Pressione enter para continuar...\n");
     getchar();  // Espera o usuário pressionar uma tecla
 }
 
@@ -305,6 +376,7 @@ void Cursos() {
 
 void CadastroCursos() {
     int c;
+    char nomeArquivo[100];
     printf("Certo! Agora iremos cadastrar Cursos. \nOBS: Você só pode cadastrar até 3 cursos de uma vez \n");
     printf("Quantos Cursos você deseja cadastrar? - R: ");
     scanf("%d", &QuantCursos);
@@ -313,6 +385,19 @@ void CadastroCursos() {
     if (QuantCursos < 4) {
         // Consumir o caractere de nova linha deixado pelo scanf
         getchar();
+
+        printf("Informe o nome do arquivo para salvar os dados dos cursos: ");
+        fgets(nomeArquivo, sizeof(nomeArquivo), stdin);
+        strtok(nomeArquivo, "\n");  // Remover o caractere de nova linha
+
+        char caminhoArquivo[150] = "C:\\Users\\felip\\Workspace\\C\\PastaCadastros\\";
+        strcat(caminhoArquivo, nomeArquivo);
+        FILE *arquivo = fopen(caminhoArquivo, "w");
+
+        if (arquivo == NULL) {
+            printf("Erro ao abrir o arquivo!\n");
+            return;
+        }
 
         for (c = 0; c < QuantCursos; c++) {
             // Recebendo Dados
@@ -324,13 +409,21 @@ void CadastroCursos() {
             printf("Informe as disciplinas do curso %d: ", c+1);
             fgets(cursos[c].DisciplinasCurso, sizeof(cursos[c].DisciplinasCurso), stdin);
             strtok(cursos[c].DisciplinasCurso, "\n");
+
+            // Gravando dados no arquivo
+            fprintf(arquivo, "Curso %d:\n", c+1);
+            fprintf(arquivo, "Nome: %s\n", cursos[c].NomeCurso);
+            fprintf(arquivo, "Disciplinas: %s\n\n", cursos[c].DisciplinasCurso);
             Clear();
         }
 
+        fclose(arquivo);
+
+        // Imprimindo dados
+        printf("Parabéns, o Cadastro de Cursos foi um sucesso!\n");
+        printf("Aqui está o resultado do Cadastro: \n\n");
+
         for (c = 0; c < QuantCursos; c++) {
-            // Imprimindo dados
-            printf("Parabéns, o Cadastro de Cursos foi um sucesso!\n");
-            printf("Aqui está o resultado do Cadastro: \n\n");
             printf("+========================================+\n");
             printf("|            DADOS DO CURSO %d            |\n", c+1);
             printf("+========================================+\n");
@@ -344,7 +437,7 @@ void CadastroCursos() {
     Sleep(1500);
 
     // Espera que o usuário pressione qualquer tecla
-    printf("Pressione qualquer tecla para continuar...\n");
+    printf("Pressione enter para continuar...\n");
     getchar();  // Espera o usuário pressionar uma tecla
 }
 
@@ -361,6 +454,73 @@ void SubMenuImp() {
     printf("+==================================================+\n");
     printf("Esse é o menu de Impressão. \nPara acessar nossas funcionalidades, informe o número da operação desejada: ");
     scanf("%d", &opImpressao);
+}
+
+void LerArquivo(char *caminhoArquivo) {
+    FILE *arquivo = fopen(caminhoArquivo, "r");
+    if (arquivo == NULL) {
+        printf("Erro ao abrir o arquivo!\n");
+        printf("Arquivo não encontrado, tente novamente com um arquivo válido!\n");
+        Sleep(2500);
+        return;
+    }
+
+    char linha[200];
+    while (fgets(linha, sizeof(linha), arquivo)) {
+        printf("%s", linha);
+    }
+
+    fclose(arquivo);
+    printf("\nPressione enter para continuar...\n");
+    getchar();
+}
+
+void ImpressaoAlunos() {
+    char nomeArquivo[100];
+    printf("Informe o nome do arquivo de alunos a ser lido: ");
+    getchar();  // Consumir o caractere de nova linha deixado pelo scanf
+    fgets(nomeArquivo, sizeof(nomeArquivo), stdin);
+    strtok(nomeArquivo, "\n");  // Remover o caractere de nova linha
+
+    char caminhoArquivo[150] = "C:\\Users\\felip\\Workspace\\C\\PastaCadastros\\";
+    strcat(caminhoArquivo, nomeArquivo);
+    LerArquivo(caminhoArquivo);
+}
+
+void ImpressaoProfessores() {
+    char nomeArquivo[100];
+    printf("Informe o nome do arquivo de professores a ser lido: ");
+    getchar();  // Consumir o caractere de nova linha deixado pelo scanf
+    fgets(nomeArquivo, sizeof(nomeArquivo), stdin);
+    strtok(nomeArquivo, "\n");  // Remover o caractere de nova linha
+
+    char caminhoArquivo[150] = "C:\\Users\\felip\\Workspace\\C\\PastaCadastros\\";
+    strcat(caminhoArquivo, nomeArquivo);
+    LerArquivo(caminhoArquivo);
+}
+
+void ImpressaoDisciplinas() {
+    char nomeArquivo[100];
+    printf("Informe o nome do arquivo de disciplinas a ser lido: ");
+    getchar();  // Consumir o caractere de nova linha deixado pelo scanf
+    fgets(nomeArquivo, sizeof(nomeArquivo), stdin);
+    strtok(nomeArquivo, "\n");  // Remover o caractere de nova linha
+
+    char caminhoArquivo[150] = "C:\\Users\\felip\\Workspace\\C\\PastaCadastros\\";
+    strcat(caminhoArquivo, nomeArquivo);
+    LerArquivo(caminhoArquivo);
+}
+
+void ImpressaoCursos() {
+    char nomeArquivo[100];
+    printf("Informe o nome do arquivo de cursos a ser lido: ");
+    getchar();  // Consumir o caractere de nova linha deixado pelo scanf
+    fgets(nomeArquivo, sizeof(nomeArquivo), stdin);
+    strtok(nomeArquivo, "\n");  // Remover o caractere de nova linha
+
+    char caminhoArquivo[150] = "C:\\Users\\felip\\Workspace\\C\\PastaCadastros\\";
+    strcat(caminhoArquivo, nomeArquivo);
+    LerArquivo(caminhoArquivo);
 }
 
 void MenuConteudos() {
@@ -500,6 +660,35 @@ int main() {
             case 2:
                 Clear();
                 SubMenuImp();
+                switch (opImpressao) {
+                    case 1:
+                        Clear();
+                        ImpressaoAlunos();
+                    break;
+                    
+                    case 2:
+                        Clear();
+                        // Função para impressão de conteúdos
+                    break;
+
+                    case 3:
+                        Clear();
+                        ImpressaoDisciplinas();
+                    break;
+
+                    case 4:
+                        Clear();
+                        // Função para impressão de boletim
+                    break;
+
+                    case 5:
+                        Clear();
+                        RetornarMenu();
+                    break;
+
+                    default:
+                        printf("Você inseriu uma opção inválida!");
+                }
             break;
 
             case 3:
