@@ -7,7 +7,7 @@
 #include <string.h>
 
 // Variáveis
-int opMenuPrincipal, opCadastro, opImpressao, opConteudos, opNotas, EncerrandoPrograma = 0, CadAluno, QuantAlunos, CadProfessor, QuantProfessores, CadDisciplina, QuantDisciplinas;
+int opMenuPrincipal, opCadastro, opImpressao, opConteudos, opNotas, EncerrandoPrograma = 0, CadAluno, QuantAlunos, CadProfessor, QuantProfessores, CadDisciplina, QuantDisciplinas, CadCurso, QuantCursos;
 
 // Struct
 struct CadastroAlunos {
@@ -32,12 +32,36 @@ struct CadastroDisciplinas {
 
 struct CadastroCursos {
     char NomeCurso[50];
-    char Disciplinas[50];
+    char DisciplinasCurso[200];
 };
 
 // Voids
 void Clear() {
     system("cls");
+}
+
+void SistemaIcev() {
+    Clear();
+    printf("+==================================================+\n");
+    printf("|                                                  |\n");
+    printf("|     #########   #######  ########  ##     ##     |\n");
+    printf("|        ##     ##         ##        ##     ##     |\n");
+    printf("|        ##     ##         ##        ##     ##     |\n");
+    printf("|        ##     ##         #######   ##     ##     |\n");
+    printf("|        ##     ##         ##        ##     ##     |\n");
+    printf("|        ##     ##         ##         ##   ##      |\n");
+    printf("|     #########   #######  ########     ###        |\n");
+    printf("|                                                  |\n");
+    printf("+==================================================+\n");
+    printf("|                CONTROLE ACADÊMICO                |\n");
+    printf("+==================================================+\n");
+    printf("|                   Bem-vindo ao                   |\n");
+    printf("|            Sistema de Controle Acadêmico         |\n");
+    printf("|                       ICEV!                      |\n");
+    printf("|                                                  |\n");
+    printf("+==================================================+\n");
+    Sleep(3000);
+    Clear();
 }
 
 void MenuPrincipal() {
@@ -207,7 +231,7 @@ void CadastroProfessores() {
 
 void Disciplinas() {
     Clear();
-    printf("Bem-vindo à tela de Listagem das Disciplinas.\n");
+    printf("Bem-vindo à tela de Cadastro das Disciplinas.\n");
     printf("+============================================+\n");
     printf("|     DESEJA CADASTRAR ALGUMA DISCIPLINA?    |\n");
     printf("+============================================+\n");
@@ -220,7 +244,7 @@ void Disciplinas() {
 void CadastroDisciplinas() {
     int d;
     printf("Certo! Agora iremos cadastrar Disciplinas. \nOBS: Você só pode cadastrar até 8 disciplinas de uma vez \n");
-    printf("Quantos Professores você deseja cadastrar? - R: ");
+    printf("Quantas Disciplinas você deseja cadastrar? - R: ");
     scanf("%d", &QuantDisciplinas);
 
     struct CadastroDisciplinas disciplinas[QuantDisciplinas];
@@ -247,7 +271,7 @@ void CadastroDisciplinas() {
 
         for (d = 0; d < QuantDisciplinas; d++) {
             // Imprimindo dados
-            printf("Parabéns, o Cadastro de Professores foi um sucesso!\n");
+            printf("Parabéns, o Cadastro de Disciplinas foi um sucesso!\n");
             printf("Aqui está o resultado do Cadastro: \n\n");
             printf("+========================================+\n");
             printf("|        DADOS DA DISCIPLINA %d           |\n", d+1);
@@ -268,7 +292,60 @@ void CadastroDisciplinas() {
 }
 
 void Cursos() {
-    printf("Bem-vindo à tela de Listagem dos Cursos.\n");
+    Clear();
+    printf("Bem-vindo à tela de Cadastro dos Cursos.\n");
+    printf("+============================================+\n");
+    printf("|       DESEJA CADASTRAR ALGUM CURSO?        |\n");
+    printf("+============================================+\n");
+    printf("|       1 - SIM       |       0 - NÃO        |\n");
+    printf("+============================================+\n");
+    printf("| Sua Resposta: ");
+    scanf("%d", &CadCurso);
+}
+
+void CadastroCursos() {
+    int c;
+    printf("Certo! Agora iremos cadastrar Cursos. \nOBS: Você só pode cadastrar até 3 cursos de uma vez \n");
+    printf("Quantos Cursos você deseja cadastrar? - R: ");
+    scanf("%d", &QuantCursos);
+
+    struct CadastroCursos cursos[QuantCursos];
+    if (QuantCursos < 4) {
+        // Consumir o caractere de nova linha deixado pelo scanf
+        getchar();
+
+        for (c = 0; c < QuantCursos; c++) {
+            // Recebendo Dados
+            Clear();
+            printf("Informe o nome do Curso %d: ", c+1);
+            fgets(cursos[c].NomeCurso, sizeof(cursos[c].NomeCurso), stdin);
+            strtok(cursos[c].NomeCurso, "\n");
+
+            printf("Informe as disciplinas do curso %d: ", c+1);
+            fgets(cursos[c].DisciplinasCurso, sizeof(cursos[c].DisciplinasCurso), stdin);
+            strtok(cursos[c].DisciplinasCurso, "\n");
+            Clear();
+        }
+
+        for (c = 0; c < QuantCursos; c++) {
+            // Imprimindo dados
+            printf("Parabéns, o Cadastro de Cursos foi um sucesso!\n");
+            printf("Aqui está o resultado do Cadastro: \n\n");
+            printf("+========================================+\n");
+            printf("|            DADOS DO CURSO %d            |\n", c+1);
+            printf("+========================================+\n");
+            printf("| -> Nome: %s \n", cursos[c].NomeCurso);
+            printf("| -> Disciplinas: %s \n\n\n", cursos[c].DisciplinasCurso);
+        }
+    } else {
+        printf("Você inseriu uma quantidade de Cadastros inválida!\n\n");
+    }
+
+    Sleep(1500);
+
+    // Espera que o usuário pressione qualquer tecla
+    printf("Pressione qualquer tecla para continuar...\n");
+    getchar();  // Espera o usuário pressionar uma tecla
 }
 
 void SubMenuImp() {
@@ -276,9 +353,9 @@ void SubMenuImp() {
     printf("+==================================================+\n");
     printf("|                   GERAR IMPRESSÃO                |\n");
     printf("+==================================================+\n");
-    printf("|   1 - ALUNOS e CURSO     |    2 - CONTEÚDOS      |\n");
+    printf("|   1 - ALUNOS e CURSOS     |    2 - CONTEÚDOS     |\n");
     printf("+--------------------------------------------------+\n");
-    printf("|   3 - DISCIPLINAS e PROF |    4 - BOLETIM        |\n");
+    printf("|   3 - DISCIPLINAS e PROF  |    4 - BOLETIM       |\n");
     printf("+--------------------------------------------------+\n");
     printf("|           5 - RETORNAR AO MENU PRINCIPAL         |\n");
     printf("+==================================================+\n");
@@ -287,11 +364,31 @@ void SubMenuImp() {
 }
 
 void MenuConteudos() {
+    Clear();
+    printf("+==================================================+\n");
+    printf("|                     CONTEÚDOS                    |\n");
+    printf("+==================================================+\n");
+    printf("|   1 - MATERIAL DIDÁTICO  |    2 - VIDEO AULAS    |\n");
+    printf("+--------------------------------------------------+\n");
+    printf("|   3 - ARTIGOS            |    4 - EXERCÍCIOS     |\n");
+    printf("+--------------------------------------------------+\n");
+    printf("|           5 - RETORNAR AO MENU PRINCIPAL         |\n");
+    printf("+==================================================+\n");
     printf("Esse é o menu de Conteúdos. \nPara acessar nossas funcionalidades, informe o número da operação desejada: ");
     scanf("%d", &opConteudos);
 }
 
 void MenuNotas() {
+    Clear();
+    printf("+==================================================+\n");
+    printf("|                        NOTAS                     |\n");
+    printf("+==================================================+\n");
+    printf("|    1 - INSERIR NOTAS     |    2 - EDITAR NOTAS   |\n");
+    printf("+--------------------------------------------------+\n");
+    printf("|    3 - EXCLUIR NOTAS     |    4 - VISUALIZAR     |\n");
+    printf("+--------------------------------------------------+\n");
+    printf("|           5 - RETORNAR AO MENU PRINCIPAL         |\n");
+    printf("+==================================================+\n");
     printf("Esse é o menu de Notas. \nPara acessar nossas funcionalidades, informe o número da operação desejada: ");
     scanf("%d", &opNotas);
 }
@@ -317,6 +414,7 @@ void SaindoDoPrograma() {
 }
 
 void DesejaEncerrar() {
+    Clear();
     printf("+============================================+\n");
     printf("|       DESEJA MESMO SAIR DO PROGRAMA?       |\n");
     printf("+============================================+\n");
@@ -327,6 +425,7 @@ void DesejaEncerrar() {
 }
 
 int main() {
+    SistemaIcev();
     do {
         // Definindo Idioma
         setlocale(LC_ALL,"");
@@ -353,7 +452,7 @@ int main() {
                         Clear();
                         Professores();
                         if (CadProfessor == 0) {
-                            printf("Tudo bem, você não irá cadastrar nenhum aluno!");
+                            printf("Tudo bem, você não irá cadastrar nenhum professor!");
                         } else if (CadProfessor == 1) {
                             Clear();
                             CadastroProfessores();
@@ -366,7 +465,7 @@ int main() {
                         Clear();
                         Disciplinas();
                         if (CadDisciplina == 0) {
-                            printf("Tudo bem, você não irá cadastrar disciplinas!");
+                            printf("Tudo bem, você não irá cadastrar nenhuma disciplina!");
                         } else if (CadDisciplina == 1) {
                             Clear();
                             CadastroDisciplinas();
@@ -377,7 +476,15 @@ int main() {
 
                     case 4:
                         Clear();
-                        Professores();
+                        Cursos();
+                        if (CadCurso == 0) {
+                            printf("Tudo bem, você não irá cadastrar nenhum curso!");
+                        } else if (CadCurso == 1) {
+                            Clear();
+                            CadastroCursos();
+                        } else {
+                            printf("Você inseriu uma opção inválida!");
+                        }
                     break;
 
                     case 5:
