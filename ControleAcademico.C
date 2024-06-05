@@ -7,7 +7,8 @@
 #include <string.h>
 
 // Variáveis
-int opMenuPrincipal, opCadastro, opImpressao, opConteudos, opNotas, EncerrandoPrograma = 0, CadAluno, QuantAlunos, CadProfessor, QuantProfessores, CadDisciplina, QuantDisciplinas, CadCurso, QuantCursos, opInserirNotas, opEditarNotas, opExcluirNotas, opVisualizarNotas;
+int opMenuPrincipal, opCadastro, opImpressao, opConteudos, opNotas, EncerrandoPrograma = 0, CadAluno, QuantAlunos, CadProfessor, QuantProfessores;
+int CadDisciplina, QuantDisciplinas, CadCurso, QuantCursos, opInserirNotas, opEditarNotas, opExcluirNotas, opVisualizarNotas;
 
 // Struct
 struct CadastroAlunos {
@@ -33,6 +34,12 @@ struct CadastroDisciplinas {
 struct CadastroCursos {
     char NomeCurso[50];
     char DisciplinasCurso[200];
+};
+
+struct Notas {
+    char Disciplina[50];
+    char Professor[50];
+    float Nota[5];
 };
 
 // Voids
@@ -596,8 +603,84 @@ void InserirNotas() {
 
 
 void RecebendoNotas () {
-    
+    int r, j;
+    char nomeArquivo[100];
+    int QuantNotas;
+    printf("Certo! Agora iremos receber as Notas.\n");
+    printf("OBS: Você só pode colocar até 5 notas de uma só vez no sistema. \n");
+    printf("Quantas notas você deseja cadastrar? - R: ");
+    scanf("%d", &QuantNotas);
+
+    struct Notas notas[QuantNotas];
+
+    if (QuantNotas < 6 || QuantNotas >= 1) {
+        // Consumir o caractere de nova linha deixado pelo scanf
+        getchar();
+
+        printf("\nInforme o nome do arquivo para salvar os dados das notas: ");
+        fgets(nomeArquivo, sizeof(nomeArquivo), stdin);
+        strtok(nomeArquivo, "\n");  // Remover o caractere de nova linha
+
+        char caminhoArquivo[150] = "C:\\ControleAcademico\\Notas\\";
+        strcat(caminhoArquivo, nomeArquivo);
+        FILE *arquivo = fopen(caminhoArquivo, "w");
+
+        if (arquivo == NULL) {
+        printf("Erro ao abrir o arquivo!\n");
+        return;
+        }
+
+        for (r = 0; r < QuantNotas; r++) {
+            printf("Informe o nome da disciplina %d: ", r+1);
+            fgets(notas[r].Disciplina, sizeof(notas[r].Disciplina), stdin);
+            strtok(notas[r].Disciplina, "\n");
+
+            printf("Informe o nome do professor que ministra disciplina %d: ", r+1);
+            fgets(notas[r].Professor, sizeof(notas[r].Professor), stdin);
+            strtok(notas[r].Professor, "\n");
+
+            for (j = 0; j < QuantNotas; j++) {
+            printf("Informe a nota do exame %d: ", j+1);
+            scanf("%f", &notas[j].Nota);
+            }
+
+            // Gravando dados no arquivo
+            fprintf(arquivo, "Disciplina %d:\n", r+1);
+            fprintf(arquivo, "Nome: %s\n", notas[r].Disciplina);
+            fprintf(arquivo, "Professor: %s\n", notas[r].Professor);
+            for (j = 0; j < QuantNotas; j++) {
+                fprintf(arquivo, "Nota %d: %.2f\n", j+1, notas[j].Nota);
+            }
+            fprintf(arquivo, "\n");
+        }
+
+        fclose(arquivo);
+
+        // Imprimindo Dados
+        printf("Parabéns, Notas inseridas com sucesso!\n");
+        printf("Aqui está o resultado deste cadastro: \n\n");
+
+        for (r = 0; r < QuantNotas; r++) {
+            printf("+========================================+\n");
+            printf("|             DADOS DA NOTA %d            |\n", r+1);
+            printf("+========================================+\n");
+            printf("| -> Disciplina: %s \n", notas[r].Disciplina);
+            printf("| -> Professor: %s \n", notas[r].Professor);
+            for (j = 0; j < QuantNotas; j++){
+                printf("| -> Nota %d: %.2f \n", j+1, notas[j].Nota);
+            }
+        }       
+    } else {
+        printf("Você inseriu uma quantidade de Notas inválida!\n\n");
+    }
+
+    Sleep(1500);
+
+    // Espera que o usuário pressione qualquer tecla
+    printf("Pressione enter para continuar...\n");
+    getchar();  // Espera o usuário pressionar uma tecla
 }
+
 
 void EditarNotas() {
     Clear();
@@ -802,7 +885,8 @@ int main() {
                         if (opInserirNotas == 0){
                             printf("Tudo bem, você não irá inserir nenhuma nota!");
                         } else if (opInserirNotas == 1) {
-
+                            Clear();
+                            RecebendoNotas();
                         } else {
                             printf("Você inseriu uma opção inválida!");
                         }
@@ -812,9 +896,9 @@ int main() {
                         Clear();
                         EditarNotas();
                         if (opEditarNotas == 0){
-                            printf("Tudo bem, você não irá inserir nenhuma nota!");
+                            printf("Tudo bem, você não irá editar nenhuma nota!");
                         } else if (opEditarNotas == 1) {
-
+                            
                         } else {
                             printf("Você inseriu uma opção inválida!");
                         }
@@ -824,7 +908,7 @@ int main() {
                         Clear();
                         ExcluirNotas();
                         if (opExcluirNotas == 0){
-                            printf("Tudo bem, você não irá inserir nenhuma nota!");
+                            printf("Tudo bem, você não irá excluir nenhuma nota!");
                         } else if (opExcluirNotas == 1) {
 
                         } else {
@@ -836,7 +920,7 @@ int main() {
                         Clear();
                         VisualizarNotas();
                         if (opVisualizarNotas == 0){
-                            printf("Tudo bem, você não irá inserir nenhuma nota!");
+                            printf("Tudo bem, você não irá visualizar nenhuma nota!");
                         } else if (opVisualizarNotas == 1) {
 
                         } else {
