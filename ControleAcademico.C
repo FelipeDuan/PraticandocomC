@@ -603,7 +603,7 @@ void InserirNotas() {
 
 
 void RecebendoNotas() {
-    int r, j;
+    int r;
     char nomeArquivo[100];
     int QuantNotas;
     printf("Certo! Agora iremos receber as Notas.\n");
@@ -643,6 +643,15 @@ void RecebendoNotas() {
             printf("Informe a nota do exame %d: ", r+1);
             scanf("%f", &notas[r].Nota);
             getchar();  // Consumir o caractere de nova linha deixado pelo scanf
+
+            if (notas[r].Nota < 0 || notas[r].Nota > 10) {
+                Clear();
+                printf("Nota inválida! O valor deve estar entre 0 e 10.\n");
+                fclose(arquivo);
+                remove(caminhoArquivo);  // Remover o arquivo incompleto
+                Sleep(2500);
+                return;
+            }
 
             // Gravando dados no arquivo
             fprintf(arquivo, "Disciplina %d:\n", r+1);
