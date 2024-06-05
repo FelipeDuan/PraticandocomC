@@ -39,7 +39,7 @@ struct CadastroCursos {
 struct Notas {
     char Disciplina[50];
     char Professor[50];
-    float Nota[5];
+    char Nota[3];
 };
 
 // Voids
@@ -631,6 +631,7 @@ void RecebendoNotas () {
         }
 
         for (r = 0; r < QuantNotas; r++) {
+            Clear();
             printf("Informe o nome da disciplina %d: ", r+1);
             fgets(notas[r].Disciplina, sizeof(notas[r].Disciplina), stdin);
             strtok(notas[r].Disciplina, "\n");
@@ -639,19 +640,16 @@ void RecebendoNotas () {
             fgets(notas[r].Professor, sizeof(notas[r].Professor), stdin);
             strtok(notas[r].Professor, "\n");
 
-            for (j = 0; j < QuantNotas; j++) {
-            printf("Informe a nota do exame %d: ", j+1);
-            scanf("%f", &notas[j].Nota);
-            }
+            printf("Informe a nota do exame %d: ", r+1);
+            fgets(notas[r].Nota, sizeof(notas[r].Nota), stdin);
+            strtok(notas[r].Nota, "\n");
+            
 
             // Gravando dados no arquivo
             fprintf(arquivo, "Disciplina %d:\n", r+1);
             fprintf(arquivo, "Nome: %s\n", notas[r].Disciplina);
             fprintf(arquivo, "Professor: %s\n", notas[r].Professor);
-            for (j = 0; j < QuantNotas; j++) {
-                fprintf(arquivo, "Nota %d: %.2f\n", j+1, notas[j].Nota);
-            }
-            fprintf(arquivo, "\n");
+            fprintf(arquivo, "Nota %d: %s \n\n", r+1, notas[j].Nota);
         }
 
         fclose(arquivo);
@@ -667,8 +665,9 @@ void RecebendoNotas () {
             printf("| -> Disciplina: %s \n", notas[r].Disciplina);
             printf("| -> Professor: %s \n", notas[r].Professor);
             for (j = 0; j < QuantNotas; j++){
-                printf("| -> Nota %d: %.2f \n", j+1, notas[j].Nota);
+                printf("| -> Nota %d: %s", j+1, notas[j].Nota);
             }
+            printf("\n");
         }       
     } else {
         printf("Você inseriu uma quantidade de Notas inválida!\n\n");
