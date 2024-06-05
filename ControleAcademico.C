@@ -645,8 +645,7 @@ void RecebendoNotas() {
             getchar();  // Consumir o caractere de nova linha deixado pelo scanf
 
             if (notas[r].Nota < 0 || notas[r].Nota > 10) {
-                Clear();
-                printf("Nota inválida! O valor deve estar entre 0 e 10.\n");
+                printf("\n\nNota inválida! O valor deve estar entre 0 e 10.\n");
                 fclose(arquivo);
                 remove(caminhoArquivo);  // Remover o arquivo incompleto
                 Sleep(2500);
