@@ -7,7 +7,7 @@
 #include <string.h>
 
 // Variáveis
-int opMenuPrincipal, opCadastro, opImpressao, opConteudos, opNotas, EncerrandoPrograma = 0, CadAluno, QuantAlunos, CadProfessor, QuantProfessores, CadDisciplina, QuantDisciplinas, CadCurso, QuantCursos;
+int opMenuPrincipal, opCadastro, opImpressao, opConteudos, opNotas, EncerrandoPrograma = 0, CadAluno, QuantAlunos, CadProfessor, QuantProfessores, CadDisciplina, QuantDisciplinas, CadCurso, QuantCursos, opInserirNotas, opEditarNotas, opExcluirNotas, opVisualizarNotas;
 
 // Struct
 struct CadastroAlunos {
@@ -40,24 +40,53 @@ void Clear() {
     system("cls");
 }
 
+void ExibirLayout() {
+    Clear();
+    printf("  _____ _____ ________      __\n");
+    printf(" |_   _/ ____|  ____\\ \\    / /\n");
+    printf("   | || |    | |__   \\ \\  / / \n");
+    printf("   | || |    |  __|   \\ \\/ /  \n");
+    printf("  _| || |____| |____   \\  /   \n");
+    printf(" |_____\\_____|______|   \\/    \n");
+    printf("                              \n");
+    Sleep(3000);
+    Clear();
+}
+
+void Loading() {
+    Clear();
+    int progresso = 0;
+    int f;
+
+    printf("+====================================================+\n");
+    printf("|                      CARREGANDO                    |\n");
+    printf("+====================================================+\n");
+    //printf("| [                                                ] |\n");
+    //printf("+====================================================+\n");
+
+    for (progresso = 0; progresso <= 100; progresso++) {
+        // Move o cursor para a posição do progresso
+        printf("\r| [");
+        for ( f = 0; f < progresso / 2; f++) {
+            printf("=");
+        }
+        for ( f = progresso / 2; f < 50; f++) {
+            printf(" ");
+        }
+        printf("] %d%%", progresso);
+        fflush(stdout);
+        Sleep(50); // Ajusta o tempo para tornar o carregamento mais rápido ou mais lento
+    }
+    printf("\n");
+}
+
 void SistemaIcev() {
     Clear();
-    printf("+==================================================+\n");
-    printf("|                                                  |\n");
-    printf("|     #########   #######  ########  ##     ##     |\n");
-    printf("|        ##     ##         ##        ##     ##     |\n");
-    printf("|        ##     ##         ##        ##     ##     |\n");
-    printf("|        ##     ##         #######   ##     ##     |\n");
-    printf("|        ##     ##         ##        ##     ##     |\n");
-    printf("|        ##     ##         ##         ##   ##      |\n");
-    printf("|     #########   #######  ########     ###        |\n");
-    printf("|                                                  |\n");
     printf("+==================================================+\n");
     printf("|                CONTROLE ACADEMICO                |\n");
     printf("+==================================================+\n");
     printf("|                   Bem-vindo ao                   |\n");
-    printf("|            Sistema de Controle Academico         |\n");
-    printf("|                       ICEV!                      |\n");
+    printf("|           Sistema de Controle Academico!         |\n");
     printf("|                                                  |\n");
     printf("+==================================================+\n");
     Sleep(3000);
@@ -123,7 +152,7 @@ void CadastroAluno() {
         fgets(nomeArquivo, sizeof(nomeArquivo), stdin);
         strtok(nomeArquivo, "\n");  // Remover o caractere de nova linha
 
-        char caminhoArquivo[150] = "C:\\Users\\felip\\Workspace\\C\\PastaCadastros\\";
+        char caminhoArquivo[150] = "C:\\ControleAcademico\\Alunos\\";
         strcat(caminhoArquivo, nomeArquivo);
         FILE *arquivo = fopen(caminhoArquivo, "w");
 
@@ -214,7 +243,7 @@ void CadastroProfessores() {
         fgets(nomeArquivo, sizeof(nomeArquivo), stdin);
         strtok(nomeArquivo, "\n");  // Remover o caractere de nova linha
 
-        char caminhoArquivo[150] = "C:\\Users\\felip\\Workspace\\C\\PastaCadastros\\";
+        char caminhoArquivo[150] = "C:\\ControleAcademico\\Professores\\";
         strcat(caminhoArquivo, nomeArquivo);
         FILE *arquivo = fopen(caminhoArquivo, "w");
 
@@ -305,7 +334,7 @@ void CadastroDisciplinas() {
         fgets(nomeArquivo, sizeof(nomeArquivo), stdin);
         strtok(nomeArquivo, "\n");  // Remover o caractere de nova linha
 
-        char caminhoArquivo[150] = "C:\\Users\\felip\\Workspace\\C\\PastaCadastros\\";
+        char caminhoArquivo[150] = "C:\\ControleAcademico\\Disciplinas\\";
         strcat(caminhoArquivo, nomeArquivo);
         FILE *arquivo = fopen(caminhoArquivo, "w");
 
@@ -390,7 +419,7 @@ void CadastroCursos() {
         fgets(nomeArquivo, sizeof(nomeArquivo), stdin);
         strtok(nomeArquivo, "\n");  // Remover o caractere de nova linha
 
-        char caminhoArquivo[150] = "C:\\Users\\felip\\Workspace\\C\\PastaCadastros\\";
+        char caminhoArquivo[150] = "C:\\ControleAcademico\\Cursos\\";
         strcat(caminhoArquivo, nomeArquivo);
         FILE *arquivo = fopen(caminhoArquivo, "w");
 
@@ -443,15 +472,15 @@ void CadastroCursos() {
 
 void SubMenuImp() {
     Clear();
-    printf("+==================================================+\n");
-    printf("|                   GERAR IMPRESSÃO                |\n");
-    printf("+==================================================+\n");
-    printf("|   1 - ALUNOS e CURSOS     |    2 - CONTEÚDOS     |\n");
-    printf("+--------------------------------------------------+\n");
-    printf("|   3 - DISCIPLINAS e PROF  |    4 - BOLETIM       |\n");
-    printf("+--------------------------------------------------+\n");
-    printf("|           5 - RETORNAR AO MENU PRINCIPAL         |\n");
-    printf("+==================================================+\n");
+    printf("+===============================================+\n");
+    printf("|                 GERAR IMPRESSÃO               |\n");
+    printf("+===============================================+\n");
+    printf("|     1 - ALUNOS         |     2 - PROFESSORES  |\n");
+    printf("+-----------------------------------------------+\n");
+    printf("|     3 - DISCIPLINAS    |     4 - CURSOS       |\n");
+    printf("+-----------------------------------------------+\n");
+    printf("|         5 - RETORNAR AO MENU PRINCIPAL        |\n");
+    printf("+===============================================+\n");
     printf("Esse é o menu de Impressão. \nPara acessar nossas funcionalidades, informe o número da operação desejada: ");
     scanf("%d", &opImpressao);
 }
@@ -482,7 +511,7 @@ void ImpressaoAlunos() {
     fgets(nomeArquivo, sizeof(nomeArquivo), stdin);
     strtok(nomeArquivo, "\n");  // Remover o caractere de nova linha
 
-    char caminhoArquivo[150] = "C:\\Users\\felip\\Workspace\\C\\PastaCadastros\\";
+    char caminhoArquivo[150] = "C:\\ControleAcademico\\Alunos\\";
     strcat(caminhoArquivo, nomeArquivo);
     LerArquivo(caminhoArquivo);
 }
@@ -494,7 +523,7 @@ void ImpressaoProfessores() {
     fgets(nomeArquivo, sizeof(nomeArquivo), stdin);
     strtok(nomeArquivo, "\n");  // Remover o caractere de nova linha
 
-    char caminhoArquivo[150] = "C:\\Users\\felip\\Workspace\\C\\PastaCadastros\\";
+    char caminhoArquivo[150] = "C:\\ControleAcademico\\Professores\\";
     strcat(caminhoArquivo, nomeArquivo);
     LerArquivo(caminhoArquivo);
 }
@@ -506,7 +535,7 @@ void ImpressaoDisciplinas() {
     fgets(nomeArquivo, sizeof(nomeArquivo), stdin);
     strtok(nomeArquivo, "\n");  // Remover o caractere de nova linha
 
-    char caminhoArquivo[150] = "C:\\Users\\felip\\Workspace\\C\\PastaCadastros\\";
+    char caminhoArquivo[150] = "C:\\ControleAcademico\\Disciplinas\\";
     strcat(caminhoArquivo, nomeArquivo);
     LerArquivo(caminhoArquivo);
 }
@@ -518,7 +547,7 @@ void ImpressaoCursos() {
     fgets(nomeArquivo, sizeof(nomeArquivo), stdin);
     strtok(nomeArquivo, "\n");  // Remover o caractere de nova linha
 
-    char caminhoArquivo[150] = "C:\\Users\\felip\\Workspace\\C\\PastaCadastros\\";
+    char caminhoArquivo[150] = "C:\\ControleAcademico\\Cursos\\";
     strcat(caminhoArquivo, nomeArquivo);
     LerArquivo(caminhoArquivo);
 }
@@ -553,6 +582,71 @@ void MenuNotas() {
     scanf("%d", &opNotas);
 }
 
+void InserirNotas() {
+    Clear();
+    printf("Bem-vindo à tela de inserção das Notas.\n");
+    printf("+============================================+\n");
+    printf("|        DESEJA INSERIR ALGUMA NOTA?         |\n");
+    printf("+============================================+\n");
+    printf("|       1 - SIM        |       0 - NÃO       |\n");
+    printf("+============================================+\n");
+    printf("| Sua Resposta: ");
+    scanf("%d", &opInserirNotas);
+}
+
+
+void RecebendoNotas () {
+    
+}
+
+void EditarNotas() {
+    Clear();
+    printf("Bem-vindo à tela de inserção das Notas.\n");
+    printf("+============================================+\n");
+    printf("|         DESEJA EDITAR ALGUMA NOTA?         |\n");
+    printf("+============================================+\n");
+    printf("|       1 - SIM        |       0 - NÃO       |\n");
+    printf("+============================================+\n");
+    printf("| Sua Resposta: ");
+    scanf("%d", &opEditarNotas);
+}
+
+void EditandoNotas() {
+
+}
+
+void ExcluirNotas() {
+    Clear();
+    printf("Bem-vindo à tela de inserção das Notas.\n");
+    printf("+============================================+\n");
+    printf("|        DESEJA EXCLUIR ALGUMA NOTA?         |\n");
+    printf("+============================================+\n");
+    printf("|       1 - SIM        |       0 - NÃO       |\n");
+    printf("+============================================+\n");
+    printf("| Sua Resposta: ");
+    scanf("%d", &opExcluirNotas);
+}
+
+void ExcluindoNotas() {
+
+}
+
+void VisualizarNotas(){
+    Clear();
+    printf("Bem-vindo à tela de visualização das Notas.\n");
+    printf("+============================================+\n");
+    printf("|       DESEJA VISUALIZAR ALGUMA NOTA?       |\n");
+    printf("+============================================+\n");
+    printf("|        1 - SIM        |       0 - NÃO      |\n");
+    printf("+============================================+\n");
+    printf("| Sua Resposta: ");
+    scanf("%d", &opVisualizarNotas);
+}
+
+void VisualizandoNotas() {
+    
+}
+
 void RetornarMenu() {
     Clear();
     printf("+====================================+\n");
@@ -585,6 +679,8 @@ void DesejaEncerrar() {
 }
 
 int main() {
+    ExibirLayout();
+    Loading();
     SistemaIcev();
     do {
         // Definindo Idioma
@@ -668,7 +764,7 @@ int main() {
                     
                     case 2:
                         Clear();
-                        // Função para impressão de conteúdos
+                        ImpressaoProfessores();
                     break;
 
                     case 3:
@@ -678,7 +774,7 @@ int main() {
 
                     case 4:
                         Clear();
-                        // Função para impressão de boletim
+                        ImpressaoCursos();
                     break;
 
                     case 5:
@@ -699,6 +795,63 @@ int main() {
             case 4:
                 Clear();
                 MenuNotas();
+                switch (opNotas) {
+                    case 1:
+                        Clear();
+                        InserirNotas();
+                        if (opInserirNotas == 0){
+                            printf("Tudo bem, você não irá inserir nenhuma nota!");
+                        } else if (opInserirNotas == 1) {
+
+                        } else {
+                            printf("Você inseriu uma opção inválida!");
+                        }
+                    break;
+
+                    case 2:
+                        Clear();
+                        EditarNotas();
+                        if (opEditarNotas == 0){
+                            printf("Tudo bem, você não irá inserir nenhuma nota!");
+                        } else if (opEditarNotas == 1) {
+
+                        } else {
+                            printf("Você inseriu uma opção inválida!");
+                        }
+                    break;
+
+                    case 3:
+                        Clear();
+                        ExcluirNotas();
+                        if (opExcluirNotas == 0){
+                            printf("Tudo bem, você não irá inserir nenhuma nota!");
+                        } else if (opExcluirNotas == 1) {
+
+                        } else {
+                            printf("Você inseriu uma opção inválida!");
+                        }
+                    break;
+
+                    case 4:
+                        Clear();
+                        VisualizarNotas();
+                        if (opVisualizarNotas == 0){
+                            printf("Tudo bem, você não irá inserir nenhuma nota!");
+                        } else if (opVisualizarNotas == 1) {
+
+                        } else {
+                            printf("Você inseriu uma opção inválida!");
+                        }
+                    break;
+
+                    case 5:
+                        Clear();
+                        RetornarMenu();
+                    break;
+
+                    default:
+                    printf("Você inseriu uma opção inválida!");
+                }
             break;
 
             case 5:
@@ -724,4 +877,6 @@ int main() {
                 printf("Você inseriu uma opção inválida!");
         }
     } while (EncerrandoPrograma != 1);
+
+    ExibirLayout();
 }

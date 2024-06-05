@@ -19,6 +19,7 @@
         "MultiplicacaoMatrizes.C": "cpp",
         "MultipMatrizes.C": "cpp",
         "Struct.C": "cpp",
-        "ControleAcademico.C": "cpp"
+        "ControleAcademico.C": "cpp",
+        "Teste.C": "cpp"
     }
 }
