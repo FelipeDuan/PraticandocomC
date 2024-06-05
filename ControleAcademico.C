@@ -39,7 +39,7 @@ struct CadastroCursos {
 struct Notas {
     char Disciplina[50];
     char Professor[50];
-    char Nota[3];
+    float Nota;
 };
 
 // Voids
@@ -602,7 +602,7 @@ void InserirNotas() {
 }
 
 
-void RecebendoNotas () {
+void RecebendoNotas() {
     int r, j;
     char nomeArquivo[100];
     int QuantNotas;
@@ -611,11 +611,11 @@ void RecebendoNotas () {
     printf("Quantas notas você deseja cadastrar? - R: ");
     scanf("%d", &QuantNotas);
 
-    struct Notas notas[QuantNotas];
-
-    if (QuantNotas < 6 || QuantNotas >= 1) {
+    if (QuantNotas >= 1 && QuantNotas <= 5) {
         // Consumir o caractere de nova linha deixado pelo scanf
         getchar();
+
+        struct Notas notas[QuantNotas];
 
         printf("\nInforme o nome do arquivo para salvar os dados das notas: ");
         fgets(nomeArquivo, sizeof(nomeArquivo), stdin);
@@ -626,8 +626,8 @@ void RecebendoNotas () {
         FILE *arquivo = fopen(caminhoArquivo, "w");
 
         if (arquivo == NULL) {
-        printf("Erro ao abrir o arquivo!\n");
-        return;
+            printf("Erro ao abrir o arquivo!\n");
+            return;
         }
 
         for (r = 0; r < QuantNotas; r++) {
@@ -636,20 +636,19 @@ void RecebendoNotas () {
             fgets(notas[r].Disciplina, sizeof(notas[r].Disciplina), stdin);
             strtok(notas[r].Disciplina, "\n");
 
-            printf("Informe o nome do professor que ministra disciplina %d: ", r+1);
+            printf("Informe o nome do professor que ministra a disciplina %d: ", r+1);
             fgets(notas[r].Professor, sizeof(notas[r].Professor), stdin);
             strtok(notas[r].Professor, "\n");
 
             printf("Informe a nota do exame %d: ", r+1);
-            fgets(notas[r].Nota, sizeof(notas[r].Nota), stdin);
-            strtok(notas[r].Nota, "\n");
-            
+            scanf("%f", &notas[r].Nota);
+            getchar();  // Consumir o caractere de nova linha deixado pelo scanf
 
             // Gravando dados no arquivo
             fprintf(arquivo, "Disciplina %d:\n", r+1);
             fprintf(arquivo, "Nome: %s\n", notas[r].Disciplina);
             fprintf(arquivo, "Professor: %s\n", notas[r].Professor);
-            fprintf(arquivo, "Nota %d: %s \n\n", r+1, notas[j].Nota);
+            fprintf(arquivo, "Nota %d: %.2f\n\n", r+1, notas[r].Nota);
         }
 
         fclose(arquivo);
@@ -664,9 +663,7 @@ void RecebendoNotas () {
             printf("+========================================+\n");
             printf("| -> Disciplina: %s \n", notas[r].Disciplina);
             printf("| -> Professor: %s \n", notas[r].Professor);
-            for (j = 0; j < QuantNotas; j++){
-                printf("| -> Nota %d: %s", j+1, notas[j].Nota);
-            }
+            printf("| -> Nota %d: %.2f\n", r+1, notas[r].Nota);
             printf("\n");
         }       
     } else {
