@@ -699,7 +699,100 @@ void EditarNotas() {
 }
 
 void EditandoNotas() {
+    Clear();
+    int r;
+    char nomeArquivo[100];
+    int QuantNotas;
+    struct Notas notas[5];  // Definimos um máximo de 5 notas conforme o limite
 
+    printf("Informe o nome do arquivo para editar as notas: ");
+    getchar();  // Consumir o caractere de nova linha deixado pelo scanf
+    fgets(nomeArquivo, sizeof(nomeArquivo), stdin);
+    strtok(nomeArquivo, "\n");  // Remover o caractere de nova linha
+
+    char caminhoArquivo[150] = "C:\\ControleAcademico\\Notas\\";
+    strcat(caminhoArquivo, nomeArquivo);
+
+    FILE *arquivo = fopen(caminhoArquivo, "r+");
+    if (arquivo == NULL) {
+        printf("Erro ao abrir o arquivo!\n");
+        return;
+    }
+
+    // Leitura do conteúdo atual do arquivo
+    printf("\nConteúdo atual do arquivo:\n");
+    char buffer[255];
+    while (fgets(buffer, sizeof(buffer), arquivo)) {
+        printf("%s", buffer);
+    }
+
+    // Voltar para o início do arquivo para edição
+    rewind(arquivo);
+
+    printf("Quantas notas você deseja editar? (Até 5) - R: ");
+    scanf("%d", &QuantNotas);
+
+    if (QuantNotas < 1 || QuantNotas > 5) {
+        printf("Número inválido de notas. Deve ser entre 1 e 5.\n");
+        fclose(arquivo);
+        return;
+    }
+
+    // Consumir o caractere de nova linha deixado pelo scanf
+    getchar();
+
+    for (r = 0; r < QuantNotas; r++) {
+        Clear();
+        printf("Informe o nome da disciplina %d: ", r+1);
+        fgets(notas[r].Disciplina, sizeof(notas[r].Disciplina), stdin);
+        strtok(notas[r].Disciplina, "\n");
+
+        printf("Informe o nome do professor que ministra a disciplina %d: ", r+1);
+        fgets(notas[r].Professor, sizeof(notas[r].Professor), stdin);
+        strtok(notas[r].Professor, "\n");
+
+        printf("Informe a nota do exame %d (entre 0 e 10): ", r+1);
+        scanf("%f", &notas[r].Nota);
+        getchar();  // Consumir o caractere de nova linha deixado pelo scanf
+
+        if (notas[r].Nota < 0 || notas[r].Nota > 10) {
+            printf("Nota inválida! O valor deve estar entre 0 e 10.\n");
+            fclose(arquivo);
+            return;
+        }
+    }
+
+    // Reescrever o arquivo com os novos dados
+    freopen(caminhoArquivo, "w", arquivo);
+
+    for (r = 0; r < QuantNotas; r++) {
+        fprintf(arquivo, "Disciplina %d:\n", r+1);
+        fprintf(arquivo, "Nome: %s\n", notas[r].Disciplina);
+        fprintf(arquivo, "Professor: %s\n", notas[r].Professor);
+        fprintf(arquivo, "Nota %d: %.2f\n\n", r+1, notas[r].Nota);
+    }
+
+    fclose(arquivo);
+
+    // Imprimindo Dados
+    printf("Parabéns, Notas editadas com sucesso!\n");
+    printf("Aqui está o resultado deste cadastro: \n\n");
+
+    for (r = 0; r < QuantNotas; r++) {
+        printf("+========================================+\n");
+        printf("|             DADOS DA NOTA %d            |\n", r+1);
+        printf("+========================================+\n");
+        printf("| -> Disciplina: %s \n", notas[r].Disciplina);
+        printf("| -> Professor: %s \n", notas[r].Professor);
+        printf("| -> Nota %d: %.2f\n", r+1, notas[r].Nota);
+        printf("\n");
+    }
+
+    Sleep(1500);
+
+    // Espera que o usuário pressione qualquer tecla
+    printf("Pressione enter para continuar...\n");
+    getchar();  // Espera o usuário pressionar uma tecla
 }
 
 void ExcluirNotas() {
@@ -715,7 +808,31 @@ void ExcluirNotas() {
 }
 
 void ExcluindoNotas() {
+    Clear();
+    char nomeArquivo[100];
 
+    // Consumir o caractere de nova linha deixado pelo scanf
+    getchar();
+
+    printf("Informe o nome do arquivo que deseja excluir: ");
+    fgets(nomeArquivo, sizeof(nomeArquivo), stdin);
+    strtok(nomeArquivo, "\n");  // Remover o caractere de nova linha
+
+    char caminhoArquivo[150] = "C:\\ControleAcademico\\Notas\\";
+    strcat(caminhoArquivo, nomeArquivo);
+
+    // Tentar remover o arquivo
+    if (remove(caminhoArquivo) == 0) {
+        printf("\nArquivo %s excluído com sucesso!\n\n", nomeArquivo);
+    } else {
+        printf("\nErro ao excluir o arquivo %s. Verifique se o arquivo existe.\n\n", nomeArquivo);
+    }
+
+    Sleep(1500);
+
+    // Espera que o usuário pressione qualquer tecla
+    printf("Pressione enter para continuar...\n");
+    getchar();  // Espera o usuário pressionar uma tecla
 }
 
 void VisualizarNotas(){
@@ -731,7 +848,40 @@ void VisualizarNotas(){
 }
 
 void VisualizandoNotas() {
-    
+    Clear();
+    char nomeArquivo[100];
+
+    // Consumir o caractere de nova linha deixado pelo scanf
+    getchar();
+
+    printf("Informe o nome do arquivo que deseja visualizar: ");
+    fgets(nomeArquivo, sizeof(nomeArquivo), stdin);
+    strtok(nomeArquivo, "\n");  // Remover o caractere de nova linha
+
+    char caminhoArquivo[150] = "C:\\ControleAcademico\\Notas\\";
+    strcat(caminhoArquivo, nomeArquivo);
+
+    FILE *arquivo = fopen(caminhoArquivo, "r");
+    if (arquivo == NULL) {
+        printf("\nErro ao abrir o arquivo %s. Verifique se o arquivo existe.\n\n", nomeArquivo);
+        Sleep(1500);
+        return;
+    }
+
+    // Ler e exibir o conteúdo do arquivo
+    printf("\nConteúdo do arquivo %s:\n\n", nomeArquivo);
+    char buffer[255];
+    while (fgets(buffer, sizeof(buffer), arquivo)) {
+        printf("%s", buffer);
+    }
+
+    fclose(arquivo);
+
+    Sleep(1500);
+
+    // Espera que o usuário pressione qualquer tecla
+    printf("Pressione enter para continuar...\n");
+    getchar();  // Espera o usuário pressionar uma tecla
 }
 
 void RetornarMenu() {
@@ -902,7 +1052,8 @@ int main() {
                         if (opEditarNotas == 0){
                             printf("Tudo bem, você não irá editar nenhuma nota!");
                         } else if (opEditarNotas == 1) {
-                            
+                            Clear();
+                            EditandoNotas();
                         } else {
                             printf("Você inseriu uma opção inválida!");
                         }
@@ -914,7 +1065,8 @@ int main() {
                         if (opExcluirNotas == 0){
                             printf("Tudo bem, você não irá excluir nenhuma nota!");
                         } else if (opExcluirNotas == 1) {
-
+                            Clear();
+                            ExcluindoNotas();
                         } else {
                             printf("Você inseriu uma opção inválida!");
                         }
@@ -926,7 +1078,8 @@ int main() {
                         if (opVisualizarNotas == 0){
                             printf("Tudo bem, você não irá visualizar nenhuma nota!");
                         } else if (opVisualizarNotas == 1) {
-
+                            Clear();
+                            VisualizandoNotas();
                         } else {
                             printf("Você inseriu uma opção inválida!");
                         }
