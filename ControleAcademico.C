@@ -564,9 +564,9 @@ void MenuConteudos() {
     printf("+==================================================+\n");
     printf("|                     CONTEÚDOS                    |\n");
     printf("+==================================================+\n");
-    printf("|   1 - MATERIAL DIDÁTICO  |    2 - VIDEO AULAS    |\n");
+    printf("|      1 - CALENDÁRIO      |    2 - BIBLIOGRAFIA   |\n");
     printf("+--------------------------------------------------+\n");
-    printf("|   3 - ARTIGOS            |    4 - EXERCÍCIOS     |\n");
+    printf("|      3 - HORÁRIO         |    4 - ARTIGOS        |\n");
     printf("+--------------------------------------------------+\n");
     printf("|           5 - RETORNAR AO MENU PRINCIPAL         |\n");
     printf("+==================================================+\n");
@@ -592,6 +592,29 @@ void Calendario() {
     printf("|  Algoritmo e Programação - Prof Hilson      | 19/04/2024| 08/05/2024| 06/06/2024| 12/06/2024| 22/06/2024 | 28/06/2024   | 03/07/2024 |\n");
     printf("+=============================================+===========+===========+===========+===========+============+==============+============+\n");
 }
+
+void Bibliografia() {
+    Clear();
+    printf("+==================================================+\n");
+    printf("|                   BIBLIOGRAFIA                   |\n");
+    printf("+==================================================+\n");
+    printf("| 1. Estruturas de Dados e Algoritmos em C         |\n");
+    printf("|    - Autor: Roberto Lima                         |\n");
+    printf("|    - Edição: 3ª                                  |\n");
+    printf("+--------------------------------------------------+\n");
+    printf("| 2. Programação em C - Completo e Descomplicado   |\n");
+    printf("|    - Autor: Antônio Carlos                       |\n");
+    printf("|    - Edição: 2ª                                  |\n");
+    printf("+--------------------------------------------------+\n");
+    printf("|           Pressione enter para continuar...      |\n");
+    printf("+==================================================+\n");
+    getchar();
+}
+
+void Horario() {
+
+}
+
 
 void MenuNotas() {
     Clear();
@@ -1046,6 +1069,34 @@ int main() {
             case 3:
                 Clear();
                 MenuConteudos();
+                switch (opConteudos) {
+                    case 1:
+                        Clear();
+                        Calendario();
+                    break;
+
+                    case 2:
+                        Clear();
+                        Bibliografia();
+                    break;
+
+                    case 3:
+                        Clear();
+                        Horario();
+                    break;
+
+                    case 4:
+                    break;
+
+                    case 5:
+                        // Retornar ao Menu Principal
+                        Clear();
+                        RetornarMenu();
+                    break;
+
+                    default:
+                        printf("Você inseriu uma opção inválida!");
+                }
             break;
 
             case 4:
