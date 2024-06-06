@@ -591,6 +591,10 @@ void Calendario() {
     printf("+---------------------------------------------+-----------+-----------+-----------+-----------+------------+--------------+------------+\n");
     printf("|  Algoritmo e Programação - Prof Hilson      | 19/04/2024| 08/05/2024| 06/06/2024| 12/06/2024| 22/06/2024 | 28/06/2024   | 03/07/2024 |\n");
     printf("+=============================================+===========+===========+===========+===========+============+==============+============+\n");
+    Sleep(3000);
+   // Espera que o usuário pressione qualquer tecla
+    printf("\nPressione enter para continuar...\n");
+    getchar();  // Espera o usuário pressionar uma tecla
 }
 
 void Bibliografia() {
@@ -608,7 +612,10 @@ void Bibliografia() {
     printf("+--------------------------------------------------+\n");
     printf("|           Pressione enter para continuar...      |\n");
     printf("+==================================================+\n");
-    getchar();
+    Sleep(3000);
+   // Espera que o usuário pressione qualquer tecla
+    printf("\nPressione enter para continuar...\n");
+    getchar();  // Espera o usuário pressionar uma tecla
 }
 
 void Horario() {
