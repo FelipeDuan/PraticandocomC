@@ -21,6 +21,10 @@
         "Struct.C": "cpp",
         "ControleAcademico.C": "cpp",
         "Teste.C": "cpp",
-        "MultiMatrizes.C": "cpp"
+        "MultiMatrizes.C": "cpp",
+        "Matriz2.C": "cpp",
+        "Matriz3.C": "cpp",
+        "Arquivos.C": "cpp",
+        "GravarArquivo.C": "cpp"
     }
 }
