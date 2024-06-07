@@ -6,11 +6,11 @@
 #include <time.h>
 #include <string.h>
 
-// Variáveis
+// Variáveis Globais
 int opMenuPrincipal, opCadastro, opImpressao, opConteudos, opNotas, EncerrandoPrograma = 0, CadAluno, QuantAlunos, CadProfessor, QuantProfessores;
 int CadDisciplina, QuantDisciplinas, CadCurso, QuantCursos, opInserirNotas, opEditarNotas, opExcluirNotas, opVisualizarNotas;
 
-// Struct
+// Estruturas de Dados
 struct CadastroAlunos {
     char Nome[50];
     char Matricula[50];
@@ -42,11 +42,12 @@ struct Notas {
     float Nota;
 };
 
-// Voids
+// Função para limpar a tela
 void Clear() {
     system("cls");
 }
 
+// Função de agradecimento
 void Agradecimento() {
     Clear();
     printf("+=======================================================================================+\n");
@@ -63,11 +64,10 @@ void Agradecimento() {
     printf("|                                                                                       |\n");
     printf("+=======================================================================================+\n");
     Sleep(5000);
-    // Espera que o usuário pressione qualquer tecla
     system("pause");
 }
 
-
+// Função para exibir o layout inicial
 void ExibirLayout() {
     Clear();
     printf("  _____ _____ ________      __\n");
@@ -81,6 +81,7 @@ void ExibirLayout() {
     Clear();
 }
 
+// Função de loading
 void Loading() {
     Clear();
     int progresso = 0;
@@ -89,16 +90,13 @@ void Loading() {
     printf("+====================================================+\n");
     printf("|                      CARREGANDO                    |\n");
     printf("+====================================================+\n");
-    //printf("| [                                                ] |\n");
-    //printf("+====================================================+\n");
 
     for (progresso = 0; progresso <= 100; progresso++) {
-        // Move o cursor para a posição do progresso
         printf("\r| [");
-        for ( f = 0; f < progresso / 2; f++) {
+        for (f = 0; f < progresso / 2; f++) {
             printf("=");
         }
-        for ( f = progresso / 2; f < 50; f++) {
+        for (f = progresso / 2; f < 50; f++) {
             printf(" ");
         }
         printf("] %d%%", progresso);
@@ -108,6 +106,7 @@ void Loading() {
     printf("\n");
 }
 
+// Função para exibir a tela inicial do sistema
 void SistemaIcev() {
     Clear();
     printf("+===========================================================+\n");
@@ -125,6 +124,7 @@ void SistemaIcev() {
     Clear();
 }
 
+// Função para exibir o menu principal
 void MenuPrincipal() {
     Clear();
     printf("Olá, usuário! Seja bem-vindo ao Sistema do Controle Acadêmico do ICEV. \n\n");
@@ -141,6 +141,7 @@ void MenuPrincipal() {
     scanf("%d", &opMenuPrincipal);
 }
 
+// Função para exibir o submenu de cadastros
 void SubMenuCad() {
     Clear();
     printf("Olá, usuário! Seja bem-vindo ao Menu de Cadastros. \n\n");
@@ -157,6 +158,7 @@ void SubMenuCad() {
     scanf("%d", &opCadastro);
 }
 
+// Função para cadastro de alunos
 void Alunos() {
     Clear();
     printf("Bem-vindo à tela de Cadastro dos Alunos. \n\n");
@@ -169,6 +171,7 @@ void Alunos() {
     scanf("%d", &CadAluno);
 }
 
+// Função para cadastrar os alunos
 void CadastroAluno() {
     int i;
     char nomeArquivo[100];
@@ -249,6 +252,7 @@ void CadastroAluno() {
     system("pause");
 }
 
+// Função para cadastro de professores
 void Professores() {
     Clear();
     printf("Bem-vindo à tela de Cadastro dos Professores.\n");
@@ -261,6 +265,7 @@ void Professores() {
     scanf("%d", &CadProfessor);
 }
 
+// Função para cadastrar os professores
 void CadastroProfessores() {
     int n;
     char nomeArquivo[100];
@@ -341,6 +346,7 @@ void CadastroProfessores() {
     system("pause");
 }
 
+// Função para cadastro de disciplinas
 void Disciplinas() {
     Clear();
     printf("Bem-vindo à tela de Cadastro das Disciplinas.\n");
@@ -353,6 +359,7 @@ void Disciplinas() {
     scanf("%d", &CadDisciplina);
 }
 
+// Função para cadastrar as disciplinas
 void CadastroDisciplinas() {
     int d;
     char nomeArquivo[100];
@@ -427,6 +434,7 @@ void CadastroDisciplinas() {
     system("pause");
 }
 
+// Função para cadastro de cursos
 void Cursos() {
     Clear();
     printf("Bem-vindo à tela de Cadastro dos Cursos.\n");
@@ -439,6 +447,7 @@ void Cursos() {
     scanf("%d", &CadCurso);
 }
 
+// Função para cadastrar os cursos
 void CadastroCursos() {
     int c;
     char nomeArquivo[100];
@@ -507,6 +516,7 @@ void CadastroCursos() {
     system("pause");
 }
 
+// Função para exibir o submenu de impressão
 void SubMenuImp() {
     Clear();
     printf("Olá, usuário! Seja bem-vindo ao Menu de Impressão. \n\n");
@@ -523,6 +533,7 @@ void SubMenuImp() {
     scanf("%d", &opImpressao);
 }
 
+// Função para ler arquivos e exibir seu conteúdo
 void LerArquivo(char *caminhoArquivo) {
     FILE *arquivo = fopen(caminhoArquivo, "r");
     if (arquivo == NULL) {
@@ -541,6 +552,7 @@ void LerArquivo(char *caminhoArquivo) {
     system("pause");
 }
 
+// Função para imprimir dados dos alunos
 void ImpressaoAlunos() {
     char nomeArquivo[100];
     printf("Informe o nome do arquivo de alunos a ser lido: ");
@@ -553,6 +565,7 @@ void ImpressaoAlunos() {
     LerArquivo(caminhoArquivo);
 }
 
+// Função para imprimir dados dos professores
 void ImpressaoProfessores() {
     char nomeArquivo[100];
     printf("Informe o nome do arquivo de professores a ser lido: ");
@@ -565,6 +578,7 @@ void ImpressaoProfessores() {
     LerArquivo(caminhoArquivo);
 }
 
+// Função para imprimir dados das disciplinas
 void ImpressaoDisciplinas() {
     char nomeArquivo[100];
     printf("Informe o nome do arquivo de disciplinas a ser lido: ");
@@ -577,6 +591,7 @@ void ImpressaoDisciplinas() {
     LerArquivo(caminhoArquivo);
 }
 
+// Função para imprimir dados dos cursos
 void ImpressaoCursos() {
     char nomeArquivo[100];
     printf("Informe o nome do arquivo de cursos a ser lido: ");
@@ -589,6 +604,7 @@ void ImpressaoCursos() {
     LerArquivo(caminhoArquivo);
 }
 
+// Função para exibir o menu de conteúdos
 void MenuConteudos() {
     Clear();
     printf("Olá, usuário! Seja bem-vindo ao Menu de Conteúdos. \n\n");
@@ -605,6 +621,7 @@ void MenuConteudos() {
     scanf("%d", &opConteudos);
 }
 
+// Função para exibir o calendário acadêmico
 void Calendario() {
     Clear();
     printf("Olá, usuário! Essa é o Calendário Acadêmico dos alunos do 1º Período - Turma Ada de Engenharia de Software. Fique a vontade para olhar: \n\n");
@@ -624,10 +641,10 @@ void Calendario() {
     printf("|  Algoritmo e Programação - Prof Hilson      | 19/04/2024| 08/05/2024| 06/06/2024| 12/06/2024| 22/06/2024 | 28/06/2024   | 03/07/2024 |\n");
     printf("+=============================================+===========+===========+===========+===========+============+==============+============+\n\n");
     Sleep(3000);
-    // Espera que o usuário pressione qualquer tecla
     system("pause");
 }
 
+// Função para exibir a bibliografia acadêmica
 void Bibliografia() {
     Clear();
     printf("Olá, usuário! Essa é a Bibliográfia Acadêmica dos alunos do 1º Período de Engenharia de Software. Fique a vontade para olhar: \n\n");
@@ -655,10 +672,10 @@ void Bibliografia() {
     printf("|    - Edição: 10ª                                  |\n");
     printf("+===================================================+\n\n");
     Sleep(3000);
-    // Espera que o usuário pressione qualquer tecla
     system("pause");
 }
 
+// Função para exibir o horário acadêmico
 void Horario() {
     Clear();
     printf("Olá, usuário! Essa é o Horário Acadêmico dos alunos do 1º Período - Turma Ada de Engenharia de Software. Fique a vontade para olhar: \n\n");
@@ -677,10 +694,10 @@ void Horario() {
     printf("|                  | Prof. Stela                    |                                |                                |                                |                                |\n");
     printf("+=======================================================================================================================================================================================+\n\n");
     Sleep(3000);
-    // Espera que o usuário pressione qualquer tecla
     system("pause");
 }
 
+// Função para exibir o cronograma acadêmico
 void Cronograma() {
     Clear();
     printf("Olá, usuário! Essa é o Cronograma Acadêmico dos alunos do 1º Período de Engenharia de Software. Fique a vontade para olhar: \n\n");
@@ -708,11 +725,10 @@ void Cronograma() {
     printf("| 30/06    | RedHat                                                  |\n");
     printf("+====================================================================+\n\n");
     Sleep(3000);
-    // Espera que o usuário pressione qualquer tecla
     system("pause");
 }
 
-
+// Função para exibir o menu de notas
 void MenuNotas() {
     Clear();
     printf("Olá, usuário! Seja bem-vindo ao Menu de Notas. \n\n");
@@ -729,6 +745,7 @@ void MenuNotas() {
     scanf("%d", &opNotas);
 }
 
+// Função para inserir notas
 void InserirNotas() {
     Clear();
     printf("Bem-vindo à tela de inserção das Notas.\n");
@@ -741,7 +758,7 @@ void InserirNotas() {
     scanf("%d", &opInserirNotas);
 }
 
-
+// Função para receber as notas
 void RecebendoNotas() {
     int r;
     char nomeArquivo[100];
@@ -826,11 +843,10 @@ void RecebendoNotas() {
 
     Sleep(1500);
 
-    // Espera que o usuário pressione qualquer tecla
     system("pause");
 }
 
-
+// Função para editar notas
 void EditarNotas() {
     Clear();
     printf("Bem-vindo à tela de inserção das Notas.\n");
@@ -843,6 +859,7 @@ void EditarNotas() {
     scanf("%d", &opEditarNotas);
 }
 
+// Função para editar as notas
 void EditandoNotas() {
     Clear();
     int r;
@@ -945,13 +962,13 @@ void EditandoNotas() {
 
     Sleep(1500);
 
-    // Espera que o usuário pressione qualquer tecla
     system("pause");
 }
 
+// Função para excluir notas
 void ExcluirNotas() {
     Clear();
-    printf("Bem-vindo à tela de inserção das Notas.\n");
+    printf("Bem-vindo à tela de exclusão das Notas.\n");
     printf("+============================================+\n");
     printf("|        DESEJA EXCLUIR ALGUMA NOTA?         |\n");
     printf("+============================================+\n");
@@ -961,6 +978,7 @@ void ExcluirNotas() {
     scanf("%d", &opExcluirNotas);
 }
 
+// Função para excluir as notas
 void ExcluindoNotas() {
     Clear();
     char nomeArquivo[100];
@@ -984,10 +1002,10 @@ void ExcluindoNotas() {
 
     Sleep(1500);
 
-    // Espera que o usuário pressione qualquer tecla
     system("pause");
 }
 
+// Função para visualizar notas
 void VisualizarNotas(){
     Clear();
     printf("Bem-vindo à tela de visualização das Notas.\n");
@@ -1000,6 +1018,7 @@ void VisualizarNotas(){
     scanf("%d", &opVisualizarNotas);
 }
 
+// Função para visualizar as notas
 void VisualizandoNotas() {
     Clear();
     char nomeArquivo[100];
@@ -1033,10 +1052,10 @@ void VisualizandoNotas() {
 
     Sleep(1500);
 
-    // Espera que o usuário pressione qualquer tecla
     system("pause");
 }
 
+// Função para retornar ao menu anterior
 void RetornarMenu() {
     Clear();
     printf("+====================================+\n");
@@ -1047,6 +1066,7 @@ void RetornarMenu() {
     Sleep(2500);
 }
 
+// Função para sair do programa
 void SaindoDoPrograma() {
     Clear();
     printf("+====================================+\n");
@@ -1057,6 +1077,7 @@ void SaindoDoPrograma() {
     Sleep(2500);
 }
 
+// Função para confirmar saída do programa
 void DesejaEncerrar() {
     Clear();
     printf("+============================================+\n");
@@ -1068,6 +1089,7 @@ void DesejaEncerrar() {
     scanf("%d", &EncerrandoPrograma);
 }
 
+// Função principal
 int main() {
     // Definindo Idioma
     setlocale(LC_ALL,"");
