@@ -25,6 +25,7 @@
         "Matriz2.C": "cpp",
         "Matriz3.C": "cpp",
         "Arquivos.C": "cpp",
-        "GravarArquivo.C": "cpp"
+        "GravarArquivo.C": "cpp",
+        "UTF8-ControleAcad.C": "cpp"
     }
 }
