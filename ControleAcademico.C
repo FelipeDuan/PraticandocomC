@@ -89,20 +89,24 @@ void Loading() {
 
 void SistemaIcev() {
     Clear();
-    printf("+==================================================+\n");
-    printf("|                CONTROLE ACADEMICO                |\n");
-    printf("+==================================================+\n");
-    printf("|                   Bem-vindo ao                   |\n");
-    printf("|           Sistema de Controle Academico!         |\n");
-    printf("|                                                  |\n");
-    printf("+==================================================+\n");
+    printf("+===========================================================+\n");
+    printf("|                                                           |\n");
+    printf("|                     CONTROLE ACADÊMICO                    |\n");
+    printf("|                                                           |\n");
+    printf("+===========================================================+\n");
+    printf("|                                                           |\n");
+    printf("|                        Bem-vindo ao                       |\n");
+    printf("|                                                           |\n");
+    printf("|                Sistema de Controle Acadêmico!             |\n");
+    printf("|                                                           |\n");
+    printf("+===========================================================+\n");
     Sleep(3000);
     Clear();
 }
 
 void MenuPrincipal() {
     Clear();
-    printf("Olá, usuário! Seja bem-vindo ao sistema do controle acadêmico. \n\n");
+    printf("Olá, usuário! Seja bem-vindo ao Sistema do Controle Acadêmico do ICEV. \n\n");
     printf("+===============================================+\n");
     printf("|               CONTROLE ACADÊMICO              |\n");
     printf("+===============================================+\n");
@@ -118,6 +122,7 @@ void MenuPrincipal() {
 
 void SubMenuCad() {
     Clear();
+    printf("Olá, usuário! Seja bem-vindo ao Menu de Cadastros. \n\n");
     printf("+===============================================+\n");
     printf("|                    CADASTROS                  |\n");
     printf("+===============================================+\n");
@@ -126,7 +131,7 @@ void SubMenuCad() {
     printf("|     3 - DISCIPLINAS    |     4 - CURSOS       |\n");
     printf("+-----------------------------------------------+\n");
     printf("|         5 - RETORNAR AO MENU PRINCIPAL        |\n");
-    printf("+===============================================+\n");
+    printf("+===============================================+\n\n");
     printf("Esse é o menu de Cadastro. \nPara acessar nossas funcionalidades, informe o número da operação desejada: ");
     scanf("%d", &opCadastro);
 }
@@ -212,14 +217,13 @@ void CadastroAluno() {
             printf("| -> Curso: %s \n\n\n", alunos[i].Curso);
         }
     } else {
-        printf("Você inseriu uma quantidade de Cadastros inválida!\n\n");
+        printf("\n\nVocê inseriu uma quantidade de Cadastros inválida!\n\n");
     }
 
     Sleep(1500);
 
     // Espera que o usuário pressione qualquer tecla
-    printf("Pressione enter para continuar...\n");
-    getchar();  // Espera o usuário pressionar uma tecla
+    system("pause");
 }
 
 void Professores() {
@@ -309,8 +313,7 @@ void CadastroProfessores() {
     Sleep(1500);
 
     // Espera que o usuário pressione qualquer tecla
-    printf("Pressione enter para continuar...\n");
-    getchar();  // Espera o usuário pressionar uma tecla
+    system("pause");
 }
 
 void Disciplinas() {
@@ -394,8 +397,7 @@ void CadastroDisciplinas() {
     Sleep(1500);
 
     // Espera que o usuário pressione qualquer tecla
-    printf("Pressione enter para continuar...\n");
-    getchar();  // Espera o usuário pressionar uma tecla
+    system("pause");
 }
 
 void Cursos() {
@@ -473,12 +475,12 @@ void CadastroCursos() {
     Sleep(1500);
 
     // Espera que o usuário pressione qualquer tecla
-    printf("Pressione enter para continuar...\n");
-    getchar();  // Espera o usuário pressionar uma tecla
+    system("pause");
 }
 
 void SubMenuImp() {
     Clear();
+    printf("Olá, usuário! Seja bem-vindo ao Menu de Impressão. \n\n");
     printf("+===============================================+\n");
     printf("|                 GERAR IMPRESSÃO               |\n");
     printf("+===============================================+\n");
@@ -487,7 +489,7 @@ void SubMenuImp() {
     printf("|     3 - DISCIPLINAS    |     4 - CURSOS       |\n");
     printf("+-----------------------------------------------+\n");
     printf("|         5 - RETORNAR AO MENU PRINCIPAL        |\n");
-    printf("+===============================================+\n");
+    printf("+===============================================+\n\n");
     printf("Esse é o menu de Impressão. \nPara acessar nossas funcionalidades, informe o número da operação desejada: ");
     scanf("%d", &opImpressao);
 }
@@ -507,8 +509,7 @@ void LerArquivo(char *caminhoArquivo) {
     }
 
     fclose(arquivo);
-    printf("\nPressione enter para continuar...\n");
-    getchar();
+    system("pause");
 }
 
 void ImpressaoAlunos() {
@@ -561,21 +562,23 @@ void ImpressaoCursos() {
 
 void MenuConteudos() {
     Clear();
+    printf("Olá, usuário! Seja bem-vindo ao Menu de Conteúdos. \n\n");
     printf("+==================================================+\n");
     printf("|                     CONTEÚDOS                    |\n");
     printf("+==================================================+\n");
     printf("|      1 - CALENDÁRIO      |    2 - BIBLIOGRAFIA   |\n");
     printf("+--------------------------------------------------+\n");
-    printf("|      3 - HORÁRIO         |    4 - ARTIGOS        |\n");
+    printf("|      3 - HORÁRIO         |    4 - CRONOGRAMA     |\n");
     printf("+--------------------------------------------------+\n");
     printf("|           5 - RETORNAR AO MENU PRINCIPAL         |\n");
-    printf("+==================================================+\n");
+    printf("+==================================================+\n\n");
     printf("Esse é o menu de Conteúdos. \nPara acessar nossas funcionalidades, informe o número da operação desejada: ");
     scanf("%d", &opConteudos);
 }
 
 void Calendario() {
     Clear();
+    printf("Olá, usuário! Essa é o Calendário Acadêmico dos alunos do 1º Período - Turma Ada de Engenharia de Software. Fique a vontade para olhar: \n\n");
     printf("+======================================================================================================================================+\n");
     printf("|                                                     1º Período - ADA - Tarde                                                         |\n");
     printf("+======================================================================================================================================+\n");
@@ -590,41 +593,102 @@ void Calendario() {
     printf("|  Arquitetura de Computadores - Prof Luciani | 15/04/2024| 06/05/2024| 27/05/2024| 10/06/2024| 22/06/2024 | 28/06/2024   | 01/07/2024 |\n");
     printf("+---------------------------------------------+-----------+-----------+-----------+-----------+------------+--------------+------------+\n");
     printf("|  Algoritmo e Programação - Prof Hilson      | 19/04/2024| 08/05/2024| 06/06/2024| 12/06/2024| 22/06/2024 | 28/06/2024   | 03/07/2024 |\n");
-    printf("+=============================================+===========+===========+===========+===========+============+==============+============+\n");
+    printf("+=============================================+===========+===========+===========+===========+============+==============+============+\n\n");
     Sleep(3000);
-   // Espera que o usuário pressione qualquer tecla
-    printf("\nPressione enter para continuar...\n");
-    getchar();  // Espera o usuário pressionar uma tecla
+    // Espera que o usuário pressione qualquer tecla
+    system("pause");
 }
 
 void Bibliografia() {
     Clear();
-    printf("+==================================================+\n");
-    printf("|                   BIBLIOGRAFIA                   |\n");
-    printf("+==================================================+\n");
-    printf("| 1. Estruturas de Dados e Algoritmos em C         |\n");
-    printf("|    - Autor: Roberto Lima                         |\n");
-    printf("|    - Edição: 3ª                                  |\n");
-    printf("+--------------------------------------------------+\n");
-    printf("| 2. Programação em C - Completo e Descomplicado   |\n");
-    printf("|    - Autor: Antônio Carlos                       |\n");
-    printf("|    - Edição: 2ª                                  |\n");
-    printf("+--------------------------------------------------+\n");
-    printf("|           Pressione enter para continuar...      |\n");
-    printf("+==================================================+\n");
+    printf("Olá, usuário! Essa é a Bibliográfia Acadêmica dos alunos do 1º Período de Engenharia de Software. Fique a vontade para olhar: \n\n");
+    printf("+===================================================+\n");
+    printf("|                    BIBLIOGRAFIA                   |\n");
+    printf("+===================================================+\n");
+    printf("| 1. Engenharia de Software                         |\n");
+    printf("|    - Autor: Sommerville                           |\n");
+    printf("|    - Edição: 9ª                                   |\n");
+    printf("+---------------------------------------------------+\n");
+    printf("| 2. Matemática Discreta para Ciências da Computação|\n");
+    printf("|    - Autor: STEIN, DRYSDALE, BOGART               |\n");
+    printf("+---------------------------------------------------+\n");
+    printf("| 3. Algoritmos e Programação com Exemplos          |\n");
+    printf("|    - Autor: EDELWEISS                             |\n");
+    printf("|    - Série Livros Didáticos UFRGS - Volume 23     |\n");
+    printf("+---------------------------------------------------+\n");
+    printf("| 4. Interdisciplinaridade em Ciência, Tecnologia   |\n");
+    printf("|    & Inovação                                     |\n");
+    printf("|    - Autor: PHILIPPI JR.                          |\n");
+    printf("|    - Edição: 1ª                                   |\n");
+    printf("+---------------------------------------------------+\n");
+    printf("| 5. Arquitetura e Organização de Computadores      |\n");
+    printf("|    - Autor: STALLINGS                             |\n");
+    printf("|    - Edição: 10ª                                  |\n");
+    printf("+===================================================+\n\n");
     Sleep(3000);
-   // Espera que o usuário pressione qualquer tecla
-    printf("\nPressione enter para continuar...\n");
-    getchar();  // Espera o usuário pressionar uma tecla
+    // Espera que o usuário pressione qualquer tecla
+    system("pause");
 }
 
 void Horario() {
+    Clear();
+    printf("Olá, usuário! Essa é o Horário Acadêmico dos alunos do 1º Período - Turma Ada de Engenharia de Software. Fique a vontade para olhar: \n\n");
+    printf("+=======================================================================================================================================================================================+\n");
+    printf("|                                                                                 HORÁRIO                                                                                               |\n");
+    printf("+=======================================================================================================================================================================================+\n");
+    printf("| Horário          |            Segunda             |             Terça              |             Quarta             |             Quinta             |             Sexta              |\n");
+    printf("+------------------+--------------------------------+--------------------------------+--------------------------------+--------------------------------+--------------------------------+\n");
+    printf("| 14:30 - 16:00    | Arquitetura de Computadores    | Matemática Discreta            | Arquitetura de Computadores    | Algoritmos e Programação       | Algoritmos e Programação       |\n");
+    printf("|                  | Prof. Luciani                  | Prof. Chiquinho                | Prof. Luciani                  | Prof. Hilson                   | Prof. Hilson                   |\n");
+    printf("+------------------+--------------------------------+--------------------------------+--------------------------------+--------------------------------+--------------------------------+\n");
+    printf("| 16:30 - 18:00    | Seminários I                   | Engenharia de Software         | Matemática Discreta            | Engenharia de Software         | Projeto de Extensão I          |\n");
+    printf("|                  | Prof. Dimmy                    | Prof. Futino                   | Prof. Luciani                  | Prof. Futino                   | Prof. Lilian                   |\n");
+    printf("+------------------+--------------------------------+--------------------------------+--------------------------------+--------------------------------+--------------------------------+\n");
+    printf("| 18:30 - 20:00    | Inglês I                       |                                |                                |                                |                                |\n");
+    printf("|                  | Prof. Stela                    |                                |                                |                                |                                |\n");
+    printf("+=======================================================================================================================================================================================+\n\n");
+    Sleep(3000);
+    // Espera que o usuário pressione qualquer tecla
+    system("pause");
+}
 
+void Cronograma() {
+    Clear();
+    printf("Olá, usuário! Essa é o Cronograma Acadêmico dos alunos do 1º Período de Engenharia de Software. Fique a vontade para olhar: \n\n");
+    printf("+====================================================================+\n");
+    printf("|                             CRONOGRAMA                             |\n");
+    printf("+====================================================================+\n");
+    printf("| Data     | Descrição                                               |\n");
+    printf("+----------+---------------------------------------------------------+\n");
+    printf("| 05/06    | Artigo sobre Criptografia - Prof. Dimmy                 |\n");
+    printf("+----------+---------------------------------------------------------+\n");
+    printf("| 06/06    | Prova de Algoritmos e Programação                       |\n");
+    printf("+----------+---------------------------------------------------------+\n");
+    printf("| 07/06    | Trabalho de Algoritmos e Programação                    |\n");
+    printf("+----------+---------------------------------------------------------+\n");
+    printf("| 07/06    | Artigo Científico de Extensão                           |\n");
+    printf("+----------+---------------------------------------------------------+\n");
+    printf("| 15/06    | Trabalho Extra - Prof. Futino                           |\n");
+    printf("+----------+---------------------------------------------------------+\n");
+    printf("| 20/06    | Trabalho de IA - Prof. Dimmy                            |\n");
+    printf("+----------+---------------------------------------------------------+\n");
+    printf("| 22/06    | Simulado para P3                                        |\n");
+    printf("+----------+---------------------------------------------------------+\n");
+    printf("| 24/06    | Seminário Escrito - Prof. Dimmy                         |\n");
+    printf("+----------+---------------------------------------------------------+\n");
+    printf("| 30/06    | RedHat                                                  |\n");
+    printf("+====================================================================+\n");
+    printf("|                     Pressione enter para continuar...              |\n");
+    printf("+====================================================================+\n\n");
+    Sleep(3000);
+    // Espera que o usuário pressione qualquer tecla
+    system("pause");
 }
 
 
 void MenuNotas() {
     Clear();
+    printf("Olá, usuário! Seja bem-vindo ao Menu de Notas. \n\n");
     printf("+==================================================+\n");
     printf("|                        NOTAS                     |\n");
     printf("+==================================================+\n");
@@ -633,7 +697,7 @@ void MenuNotas() {
     printf("|    3 - EXCLUIR NOTAS     |    4 - VISUALIZAR     |\n");
     printf("+--------------------------------------------------+\n");
     printf("|           5 - RETORNAR AO MENU PRINCIPAL         |\n");
-    printf("+==================================================+\n");
+    printf("+==================================================+\n\n");
     printf("Esse é o menu de Notas. \nPara acessar nossas funcionalidades, informe o número da operação desejada: ");
     scanf("%d", &opNotas);
 }
@@ -730,8 +794,7 @@ void RecebendoNotas() {
     Sleep(1500);
 
     // Espera que o usuário pressione qualquer tecla
-    printf("Pressione enter para continuar...\n");
-    getchar();  // Espera o usuário pressionar uma tecla
+    system("pause");
 }
 
 
@@ -840,8 +903,7 @@ void EditandoNotas() {
     Sleep(1500);
 
     // Espera que o usuário pressione qualquer tecla
-    printf("Pressione enter para continuar...\n");
-    getchar();  // Espera o usuário pressionar uma tecla
+    system("pause");
 }
 
 void ExcluirNotas() {
@@ -880,8 +942,7 @@ void ExcluindoNotas() {
     Sleep(1500);
 
     // Espera que o usuário pressione qualquer tecla
-    printf("Pressione enter para continuar...\n");
-    getchar();  // Espera o usuário pressionar uma tecla
+    system("pause");
 }
 
 void VisualizarNotas(){
@@ -929,8 +990,7 @@ void VisualizandoNotas() {
     Sleep(1500);
 
     // Espera que o usuário pressione qualquer tecla
-    printf("Pressione enter para continuar...\n");
-    getchar();  // Espera o usuário pressionar uma tecla
+    system("pause");
 }
 
 void RetornarMenu() {
@@ -965,12 +1025,13 @@ void DesejaEncerrar() {
 }
 
 int main() {
+    // Definindo Idioma
+    setlocale(LC_ALL,"");
+
     ExibirLayout();
     Loading();
     SistemaIcev();
-    do {
-        // Definindo Idioma
-        setlocale(LC_ALL,"");
+    do {    
         MenuPrincipal();
         switch (opMenuPrincipal){
             case 1:
@@ -1093,6 +1154,8 @@ int main() {
                     break;
 
                     case 4:
+                        Clear();
+                        Cronograma();
                     break;
 
                     case 5:
