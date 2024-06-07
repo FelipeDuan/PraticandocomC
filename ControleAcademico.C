@@ -47,6 +47,27 @@ void Clear() {
     system("cls");
 }
 
+void Agradecimento() {
+    Clear();
+    printf("+=======================================================================================+\n");
+    printf("|                                                                                       |\n");
+    printf("|                                  MUITO OBRIGADO!                                      |\n");
+    printf("|                                                                                       |\n");
+    printf("+=======================================================================================+\n");
+    printf("|                                                                                       |\n");
+    printf("|                          Muito obrigado por ver meu código!                           |\n");
+    printf("|                                                                                       |\n");
+    printf("+---------------------------------------------------------------------------------------+\n");
+    printf("|                                                                                       |\n");
+    printf("|                               Feito por Felipe Duan                                   |\n");
+    printf("|                                                                                       |\n");
+    printf("+=======================================================================================+\n");
+    Sleep(5000);
+    // Espera que o usuário pressione qualquer tecla
+    system("pause");
+}
+
+
 void ExibirLayout() {
     Clear();
     printf("  _____ _____ ________      __\n");
@@ -193,11 +214,13 @@ void CadastroAluno() {
             strtok(alunos[i].Curso, "\n");
 
             // Gravando dados no arquivo
-            fprintf(arquivo, "Aluno %d:\n", i+1);
-            fprintf(arquivo, "Nome: %s\n", alunos[i].Nome);
-            fprintf(arquivo, "Matrícula: %s\n", alunos[i].Matricula);
-            fprintf(arquivo, "Turma: %s\n", alunos[i].Turma);
-            fprintf(arquivo, "Curso: %s\n\n", alunos[i].Curso);
+            fprintf(arquivo, "+========================================+\n");
+            fprintf(arquivo, "|            DADOS DO ALUNO %d            |\n", i+1);
+            fprintf(arquivo, "+========================================+\n");
+            fprintf(arquivo, "| -> Nome: %s\n", alunos[i].Nome);
+            fprintf(arquivo, "| -> Matrícula: %s\n", alunos[i].Matricula);
+            fprintf(arquivo, "| -> Turma: %s\n", alunos[i].Turma);
+            fprintf(arquivo, "| -> Curso: %s\n\n", alunos[i].Curso);
             Clear();
         }
 
@@ -217,7 +240,7 @@ void CadastroAluno() {
             printf("| -> Curso: %s \n\n\n", alunos[i].Curso);
         }
     } else {
-        printf("\n\nVocê inseriu uma quantidade de Cadastros inválida!\n\n");
+        printf("\nVocê inseriu uma quantidade de Cadastros inválida!\n\n");
     }
 
     Sleep(1500);
@@ -246,7 +269,7 @@ void CadastroProfessores() {
     scanf("%d", &QuantProfessores);
 
     struct CadastroProfessores professores[QuantProfessores];
-    if (QuantProfessores < 8) {
+    if (QuantProfessores < 9) {
         // Consumir o caractere de nova linha deixado pelo scanf
         getchar();
 
@@ -283,11 +306,13 @@ void CadastroProfessores() {
             strtok(professores[n].CursoProfessor, "\n");
 
             // Gravando dados no arquivo
-            fprintf(arquivo, "Professor %d:\n", n+1);
-            fprintf(arquivo, "Nome: %s\n", professores[n].NomeProfessor);
-            fprintf(arquivo, "Disciplina: %s\n", professores[n].Disciplina);
-            fprintf(arquivo, "Turma: %s\n", professores[n].TurmaProfessor);
-            fprintf(arquivo, "Curso: %s\n\n", professores[n].CursoProfessor);
+            fprintf(arquivo, "+========================================+\n");
+            fprintf(arquivo, "|        DADOS DO PROFESSOR %d            |\n", n+1);
+            fprintf(arquivo, "+========================================+\n");
+            fprintf(arquivo, "| -> Nome: %s\n", professores[n].NomeProfessor);
+            fprintf(arquivo, "| -> Disciplina: %s\n", professores[n].Disciplina);
+            fprintf(arquivo, "| -> Turma: %s\n", professores[n].TurmaProfessor);
+            fprintf(arquivo, "| -> Curso: %s\n\n", professores[n].CursoProfessor);
             Clear();
         }
 
@@ -307,7 +332,7 @@ void CadastroProfessores() {
             printf("| -> Curso: %s \n\n\n", professores[n].CursoProfessor);
         }
     } else {
-        printf("Você inseriu uma quantidade de Cadastros inválida!\n\n");
+        printf("\nVocê inseriu uma quantidade de Cadastros inválida!\n\n");
     }
 
     Sleep(1500);
@@ -336,11 +361,11 @@ void CadastroDisciplinas() {
     scanf("%d", &QuantDisciplinas);
 
     struct CadastroDisciplinas disciplinas[QuantDisciplinas];
-    if (QuantDisciplinas < 8) {
+    if (QuantDisciplinas < 9) {
         // Consumir o caractere de nova linha deixado pelo scanf
         getchar();
 
-        printf("Informe o nome do arquivo para salvar os dados das disciplinas: ");
+        printf("\nInforme o nome do arquivo para salvar os dados das disciplinas: ");
         fgets(nomeArquivo, sizeof(nomeArquivo), stdin);
         strtok(nomeArquivo, "\n");  // Remover o caractere de nova linha
 
@@ -369,10 +394,12 @@ void CadastroDisciplinas() {
             strtok(disciplinas[d].CursoDisciplina, "\n");
 
             // Gravando dados no arquivo
-            fprintf(arquivo, "Disciplina %d:\n", d+1);
-            fprintf(arquivo, "Nome: %s\n", disciplinas[d].NomeDisciplina);
-            fprintf(arquivo, "Professor: %s\n", disciplinas[d].Professor);
-            fprintf(arquivo, "Curso: %s\n\n", disciplinas[d].CursoDisciplina);
+            fprintf(arquivo, "+========================================+\n");
+            fprintf(arquivo, "|        DADOS DA DISCIPLINA %d           |\n", d+1);
+            fprintf(arquivo, "+========================================+\n");
+            fprintf(arquivo, "| -> Nome: %s\n", disciplinas[d].NomeDisciplina);
+            fprintf(arquivo, "| -> Professor: %s\n", disciplinas[d].Professor);
+            fprintf(arquivo, "| -> Curso: %s\n\n", disciplinas[d].CursoDisciplina);
             Clear();
         }
 
@@ -391,7 +418,7 @@ void CadastroDisciplinas() {
             printf("| -> Curso: %s \n\n\n", disciplinas[d].CursoDisciplina);
         }
     } else {
-        printf("Você inseriu uma quantidade de Cadastros inválida!\n\n");
+        printf("\nVocê inseriu uma quantidade de Cadastros inválida!\n\n");
     }
 
     Sleep(1500);
@@ -424,7 +451,7 @@ void CadastroCursos() {
         // Consumir o caractere de nova linha deixado pelo scanf
         getchar();
 
-        printf("Informe o nome do arquivo para salvar os dados dos cursos: ");
+        printf("\nInforme o nome do arquivo para salvar os dados dos cursos: ");
         fgets(nomeArquivo, sizeof(nomeArquivo), stdin);
         strtok(nomeArquivo, "\n");  // Remover o caractere de nova linha
 
@@ -449,9 +476,11 @@ void CadastroCursos() {
             strtok(cursos[c].DisciplinasCurso, "\n");
 
             // Gravando dados no arquivo
-            fprintf(arquivo, "Curso %d:\n", c+1);
-            fprintf(arquivo, "Nome: %s\n", cursos[c].NomeCurso);
-            fprintf(arquivo, "Disciplinas: %s\n\n", cursos[c].DisciplinasCurso);
+            fprintf(arquivo, "+========================================+\n");
+            fprintf(arquivo, "|            DADOS DO CURSO %d            |\n", c+1);
+            fprintf(arquivo, "+========================================+\n");
+            fprintf(arquivo, "| -> Nome: %s\n", cursos[c].NomeCurso);
+            fprintf(arquivo, "| -> Disciplinas: %s\n\n", cursos[c].DisciplinasCurso);
             Clear();
         }
 
@@ -469,7 +498,7 @@ void CadastroCursos() {
             printf("| -> Disciplinas: %s \n\n\n", cursos[c].DisciplinasCurso);
         }
     } else {
-        printf("Você inseriu uma quantidade de Cadastros inválida!\n\n");
+        printf("\nVocê inseriu uma quantidade de Cadastros inválida!\n\n");
     }
 
     Sleep(1500);
@@ -498,7 +527,7 @@ void LerArquivo(char *caminhoArquivo) {
     FILE *arquivo = fopen(caminhoArquivo, "r");
     if (arquivo == NULL) {
         printf("Erro ao abrir o arquivo!\n");
-        printf("Arquivo não encontrado, tente novamente com um arquivo válido!\n");
+        printf("Arquivo não encontrado, tente novamente com um arquivo válido / já criado!\n");
         Sleep(2500);
         return;
     }
@@ -677,8 +706,6 @@ void Cronograma() {
     printf("| 24/06    | Seminário Escrito - Prof. Dimmy                         |\n");
     printf("+----------+---------------------------------------------------------+\n");
     printf("| 30/06    | RedHat                                                  |\n");
-    printf("+====================================================================+\n");
-    printf("|                     Pressione enter para continuar...              |\n");
     printf("+====================================================================+\n\n");
     Sleep(3000);
     // Espera que o usuário pressione qualquer tecla
@@ -740,6 +767,9 @@ void RecebendoNotas() {
 
         if (arquivo == NULL) {
             printf("Erro ao abrir o arquivo!\n");
+            printf("Tente novamente!\n\n");
+            Sleep(2000);
+            system("pause");
             return;
         }
 
@@ -766,15 +796,18 @@ void RecebendoNotas() {
             }
 
             // Gravando dados no arquivo
-            fprintf(arquivo, "Disciplina %d:\n", r+1);
-            fprintf(arquivo, "Nome: %s\n", notas[r].Disciplina);
-            fprintf(arquivo, "Professor: %s\n", notas[r].Professor);
-            fprintf(arquivo, "Nota %d: %.2f\n\n", r+1, notas[r].Nota);
+            fprintf(arquivo, "+========================================+\n");
+            fprintf(arquivo, "|             DADOS DA NOTA %d            |\n", r+1);
+            fprintf(arquivo, "+========================================+\n");
+            fprintf(arquivo, "| -> Disciplina: %s\n", notas[r].Disciplina);
+            fprintf(arquivo, "| -> Professor: %s\n", notas[r].Professor);
+            fprintf(arquivo, "| -> Nota %d: %.2f\n\n", r+1, notas[r].Nota);
         }
 
         fclose(arquivo);
 
         // Imprimindo Dados
+        Clear();
         printf("Parabéns, Notas inseridas com sucesso!\n");
         printf("Aqui está o resultado deste cadastro: \n\n");
 
@@ -788,7 +821,7 @@ void RecebendoNotas() {
             printf("\n");
         }       
     } else {
-        printf("Você inseriu uma quantidade de Notas inválida!\n\n");
+        printf("\nVocê inseriu uma quantidade de Notas inválida!\n\n");
     }
 
     Sleep(1500);
@@ -827,12 +860,16 @@ void EditandoNotas() {
 
     FILE *arquivo = fopen(caminhoArquivo, "r+");
     if (arquivo == NULL) {
-        printf("Erro ao abrir o arquivo!\n");
+        printf("\nErro ao abrir o arquivo!\n");
+        printf("Tente novamente com algum arquivo válido!\n\n");
+        Sleep(2000);
+        system("pause");
         return;
     }
 
+    Clear();
     // Leitura do conteúdo atual do arquivo
-    printf("\nConteúdo atual do arquivo:\n");
+    printf("Conteúdo atual do arquivo:\n");
     char buffer[255];
     while (fgets(buffer, sizeof(buffer), arquivo)) {
         printf("%s", buffer);
@@ -841,12 +878,16 @@ void EditandoNotas() {
     // Voltar para o início do arquivo para edição
     rewind(arquivo);
 
-    printf("Quantas notas você deseja editar? (Até 5) - R: ");
+    printf("Certo! Iremos editar suas notas.\n");
+    printf("Para isso será necessário que você recoloque as notas, fazendo as alterações necessárias!\n");
+    printf("Quantas notas você deseja colocar? (Até 5) - R: ");
     scanf("%d", &QuantNotas);
 
     if (QuantNotas < 1 || QuantNotas > 5) {
         printf("Número inválido de notas. Deve ser entre 1 e 5.\n");
         fclose(arquivo);
+        Sleep(2000);
+        system("pause");
         return;
     }
 
@@ -878,10 +919,12 @@ void EditandoNotas() {
     freopen(caminhoArquivo, "w", arquivo);
 
     for (r = 0; r < QuantNotas; r++) {
-        fprintf(arquivo, "Disciplina %d:\n", r+1);
-        fprintf(arquivo, "Nome: %s\n", notas[r].Disciplina);
-        fprintf(arquivo, "Professor: %s\n", notas[r].Professor);
-        fprintf(arquivo, "Nota %d: %.2f\n\n", r+1, notas[r].Nota);
+        fprintf(arquivo, "+========================================+\n");
+        fprintf(arquivo, "|             DADOS DA NOTA %d            |\n", r+1);
+        fprintf(arquivo, "+========================================+\n");
+        fprintf(arquivo, "| -> Disciplina: %s\n", notas[r].Disciplina);
+        fprintf(arquivo, "| -> Professor: %s\n", notas[r].Professor);
+        fprintf(arquivo, "| -> Nota %d: %.2f\n\n", r+1, notas[r].Nota);
     }
 
     fclose(arquivo);
@@ -975,6 +1018,7 @@ void VisualizandoNotas() {
     if (arquivo == NULL) {
         printf("\nErro ao abrir o arquivo %s. Verifique se o arquivo existe.\n\n", nomeArquivo);
         Sleep(1500);
+        system("pause");
         return;
     }
 
@@ -1258,6 +1302,6 @@ int main() {
                 printf("Você inseriu uma opção inválida!");
         }
     } while (EncerrandoPrograma != 1);
-
+    Agradecimento();
     ExibirLayout();
 }
