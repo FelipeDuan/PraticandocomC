@@ -1,4 +1,6 @@
-// Jogo da Advinhação
+// Olá, este é um código feito para rodar em Windows, em especial, no VS Code, exibindo acentuação e caracteres especiais, sem quaisquer tipos de problemas
+// Acesse meu Github: FelipeDuan
+// Jogo da Adivinhação 
 #include <stdio.h>
 #include <stdlib.h>
 #include <windows.h>
