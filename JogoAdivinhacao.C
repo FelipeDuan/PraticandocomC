@@ -33,8 +33,7 @@ void Inicio() {
     printf("+--------------------------------------------------------------------------------------------+\n");
     printf("|                                  FEITO POR FELIPE DUAN!                                    |\n");
     printf("+============================================================================================+\n\n");
-    Sleep(4000);
-    system("pause");
+    Sleep(5000);
 }
 
 void Loading() {
@@ -533,7 +532,7 @@ do {
                     switch (Gow) {
                     case 1:
                         Clear();
-                        printf("O jogo escolhido foi God of War 3!\n\n");
+                        printf("O jogo escolhido foi God of War 3! (Cleiton Bom de Guerra)\n\n");
                         system("pause");
                     break;
 
@@ -571,7 +570,7 @@ do {
 
                                     case 2:
                                         Clear();
-                                        printf("Eu sei que você está mentindo, o jogo escolhido foi Devil May Cry!\n\n");
+                                        printf("Será que você poderia parar de escolher opções aleatoriamente?\nVocê chutou e acertou em Devil May Cry!\n\n");
                                         system("pause");
                                     break;
 
@@ -618,7 +617,7 @@ do {
 
                                 case 2:
                                     Clear();
-                                    printf("Eu sei que você está mentindo, o jogo escolhido foi Sonic!\n\n");
+                                    printf("Será que você poderia parar de escolher opções aleatoriamente?\nVocê chutou e acertou no Sonic!\n\n");
                                     system("pause");
                                 break;
 
@@ -652,7 +651,7 @@ do {
 
                                 case 2:
                                     Clear();
-                                    printf("Eu sei que você está mentindo, o jogo escolhido foi Mortal Kombat!\n\n");
+                                    printf("Será que você poderia parar de escolher opções aleatoriamente?\nVocê chutou e acertou no Mortal Kombat!\n\n");
                                     system("pause");
                                 break;
 
