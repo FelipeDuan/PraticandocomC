@@ -27,6 +27,7 @@
         "Arquivos.C": "cpp",
         "GravarArquivo.C": "cpp",
         "UTF8-ControleAcad.C": "cpp",
-        "ContAcad.C": "cpp"
+        "ContAcad.C": "cpp",
+        "JogoAdvinhacao.C": "cpp"
     }
 }
